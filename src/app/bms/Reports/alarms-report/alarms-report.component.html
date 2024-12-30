@@ -1,0 +1,288 @@
+<div class="row" style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+
+  <!--*****************************Fist Partition***************************************************-->
+  <div class="col-lg-10">
+    <div class="row">
+      <!----------------SiteId DropDown-------------->
+      <div class="col-lg-2 d-flex align-items-center">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputState">Site Name</label>
+            <select name="serialNumber" id="inputState" class="form-control" #siteId
+              (change)="evntSiteIdSelectionChange(siteId.value)">
+              <option selected>Select Site Name</option>
+              <option *ngFor="let item of gblSiteIdListArray">{{
+              item.siteId || "--"
+            }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!----------------SerialNumber DropDown-------------->
+      <div class="col-lg-2 d-flex align-items-center">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputState">Serial Number</label>
+            <select name="serialNumber" id="inputState" class="form-control" #serialNumber
+              (change)="evntSerialNumberChange(serialNumber.value)">
+              <option selected>Select Serial Number</option>
+              <option *ngFor="let item of gblSerialNumberListArray">{{
+              item.serialNumber || "--"
+            }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!--------------------------------------------------->
+
+
+
+
+      <!----------------Start Date-------------->
+      <div class="col-md-2 col-6 middleVertHoriz">
+        <div class="inputs">
+          <input id="inptStartDate" [(ngModel)]="ngMdlStartDate" placeholder="Start Date" class="calendarInput"
+            [owlDateTimeTrigger]="startDateRef" [owlDateTime]="startDateRef">
+          <owl-date-time [pickerType]="'calendar'" #startDateRef></owl-date-time>
+        </div>
+      </div>
+      <!------------------------------------------------->
+
+
+      <!----------------End Date-------------->
+      <div class="col-md-2 col-6 middleVertHoriz">
+
+        <div class="inputs">
+          <input id="inptEndDate" type=“text” [(ngModel)]="ngMdlEndDate" placeholder="End Date" class="calendarInput"
+            [owlDateTimeTrigger]="endDateRef" [owlDateTime]="endDateRef">
+          <!-- <input id="inptEndDate"  type=“text”  [(ngModel)]="ngMdlEndDate"  >-->
+          <!--<owl-date-time [startAt]="EndAt" #dtt></owl-date-time>-->
+          <owl-date-time [pickerType]="'calendar'" #endDateRef></owl-date-time>
+        </div>
+      </div>
+      <!------------------------------------------------->
+
+   <!--------------------------Get Button------------------------>
+    <div class="col-lg-1 col-1 align-self-center middleVertHoriz p-1">
+      <div matTooltip="Click To Get Data">
+          <button (click)="eventGetButton()" class="btn btn-primary" style="padding: 5px 15px !important;">
+              <img src="assets/images/png/pressButtonWithWhiteColor.png" style="width: 20px; height: 20px;">
+              Get</button>
+      </div>
+  </div>
+  <!---------------------------------------------------------->
+
+
+  <!--------------------------Clear Button------------------------>
+  <div class="col-lg-1 col-1 align-self-center  middleVertHoriz p-1">
+      <div matTooltip="Click To Clear Inputs">
+          <button (click)="clearButton()" class="btn btn-warning" style="padding: 5px 10px !important;">
+              <img src="assets/images/png/cleanTrans.png" style="width: 20px; height: 20px;">
+              Clear</button>
+      </div>
+  </div>
+  <!---------------------------------------------------------->
+
+
+      <!---------------------Test button-------------->
+      <div *ngIf="false" class="col-lg-1 col-1 align-self-center "
+        style="display: flex; align-items: center; justify-content: center;">
+        <button (click)="eventTestButton()" class="btn btn-primary">Test</button>
+      </div>
+      <!------------------------------------------------->
+    </div>
+  </div>
+
+
+  <!--*****************************Second Partition***************************************************-->
+  <div class="col-lg-2">
+    <div class="row" style="display: flex; justify-content: flex-end; align-items: center; margin-top: 15px;">
+      <!---------------------Excell button----------------------->
+      <div class="col-lg-1 " style="display: flex; justify-content: flex-end; align-items: center;">
+
+        <img src="assets/images/png/ExcellTrans100_98.png" (click)="downLoadExcell()" style="width: 35px;height: 35px;"
+          matTooltip="Click To Download Data.">
+      </div>
+      <!-------------------------------------------->
+    </div>
+  </div>
+
+
+
+</div>
+
+<!----************************************************2nd Row****************************************-->
+<div class="row">
+  <div class="col-lg-12">
+    <!--------------------Mat table--------------------------------->
+    <div id="idStringTable" *ngIf="true" style="overflow:auto;  height: 440px;;">
+
+      <mat-table #table [dataSource]="alarmsParamDataSource" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Identification Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="siteId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Site Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.siteId }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="serialNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Serial Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.serialNumber }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="bankCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Bank Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.bankCycle }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="ambientTemperature">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ambient Temperature
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.ambientTemperature }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="soc">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> State Of Charge
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.soc }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="stringVoltage">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> String Voltage
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.stringVoltage }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="stringCurrent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> String Current
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.stringCurrent }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="bmsSedCommunication">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> BMS Sed Communication
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.bmsSedCommunication }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="cellCommunication">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cell Communication
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cellCommunication }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cellVoltage">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cell Voltage
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cellVoltage }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cellTemperature">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cell Temperature
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cellTemperature }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="packetDateTime">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Packet DateTime
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.convertOwlDatetimeToCustomDate(row.packetDateTime) }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="serverTime">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Server Time
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.convertOwlDatetimeToCustomDate(row.serverTime) }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buzzer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Buzzer
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.buzzer}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dgStatus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> DG Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.dgStatus}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ebStatus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> EB Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.ebStatus}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="AlarmsParamdisplayedColumns; sticky: true;" style="    background: orange;
+          height: 1px;
+          min-height: 29px;
+          width: fit-content;
+          "></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: AlarmsParamdisplayedColumns;" style="min-height: 30px;height: 30px;"
+          [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+          (click)="getRecord(row)"></mat-row>
+      </mat-table>
+
+      <!--------------------------------------->
+    </div>
+    <!-------------------------------------------------------------->
+  </div>
+
+</div>
+
+<!---****************************************3rd Row*****************************************************-->
+<div class="row">
+  <div class=col-md-2></div>
+  <div class="col-md-7">
+    <div class="example-container mat-elevation-z8 ">
+      <mat-paginator #paginator [length]="TotalPages" [pageSizeOptions]="[1,3,5,10,20, 25,50, 100,250]"
+        class="matPaginatorContainer" [pageSize]="PageSize" (page)="handlePage($event)" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </div>
+</div>

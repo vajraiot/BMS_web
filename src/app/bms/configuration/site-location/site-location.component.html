@@ -1,0 +1,321 @@
+<div class="row" style="display: flex; justify-content: start;">
+<div class="col-lg-2">
+<img style="width: 20px;" (click)="evntRefresh()" src="assets/images/png/refresh4040.png">
+</div>
+</div>
+<div class="row">
+    <div class="col-lg-2">
+
+    </div>
+
+</div>
+<div class="row">
+<div class="col-lg-7">
+<!------------------------Table-------->
+<mat-table #table [dataSource]="siteIdListDataSource"  >
+    <ng-container matColumnDef="siteId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> SiteId
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+        {{row.siteId}} </mat-cell>
+    </ng-container>
+  
+      
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+          {{row?.siteLocation.id}} </mat-cell>
+      </ng-container>
+  
+  
+
+      
+      <ng-container matColumnDef="locationName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> LocationName
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+          {{row?.siteLocation.locationName}} </mat-cell>
+      </ng-container>
+  
+  
+
+      
+      <ng-container matColumnDef="latitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> Latitude
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+          {{row?.siteLocation.latitude}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="longitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> Longitude
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+          {{row?.siteLocation.longitude}} </mat-cell>
+      </ng-container>
+
+
+      <!---Vendor name to coustomer name changed-->
+      <ng-container matColumnDef="vendorName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth"> Customer Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 10px;" >
+          {{row?.siteLocation.vendorName}} </mat-cell>
+      </ng-container>
+
+
+
+      
+      <ng-container matColumnDef="batteryAHCapacity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth" style="    padding: 0px !important;">Battery AH Cap
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding-left: 1px;" >
+          {{row?.siteLocation.batteryAHCapacity}} </mat-cell>
+      </ng-container>
+
+
+      
+      <ng-container matColumnDef="set">
+        <mat-header-cell *matHeaderCellDef mat-sort-header    class="customHeader customeWidth" style="padding: 0;"> 
+          <div (click)="evntAddNewLocationModel()">
+            <img  style="width:20px" src="assets/images/png/add4040.png">
+          </div>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"   class="customRow customeWidth" style="padding: 0px; padding-left: 5px; padding-right: 5px;  background: white;        border: 0.6px gray solid;" >
+        <div style="display: flex; justify-content: space-between; width: 100%;    " >
+         <div (click)="evntUpdateModel(row)" >
+          <img  style="width:20px" src="assets/images/png/edit4040.png">
+         </div>
+         <div (click)="evntDeleteRecord(row)">
+          <img style="width:20px" src="assets/images/png/delete4040.png">
+         </div>
+        </div>  
+        </mat-cell>
+      </ng-container>
+  
+  
+
+
+      <mat-header-row *matHeaderRowDef="siteLocationDisplay; sticky: true;" style="    background: orange;
+      height: 1px;
+      min-height: 29px;
+      width: fit-content;
+      "></mat-header-row>
+  
+    <mat-row *matRowDef="let row; columns: siteLocationDisplay;"  
+      [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+      (click)="getRecord(row)"  (dblclick)="evntUpdateModel(row)"  ></mat-row>
+  </mat-table>
+  
+<!------------------------------------->
+</div>
+
+<div class="col-lg-5">
+<app-site-location-map [receivedSiteIdList]="selectedRowRecord"></app-site-location-map>
+</div>
+</div>
+
+<!----------------------------------Add New Location Model------------------------------>
+<div class="modal" id="idAddNewLocationDetails" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header py-1">
+            <h2 class="modal-title">--</h2>
+            <button type="button"  mat-raised-button class="close" data-dismiss="modal" style="border: 3px solid coral; padding: 1px 1px; margin: 0px;" >&times;</button>
+        </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+           <!--************************************************-->
+           <div class="row">
+
+            <div class="col-md-12">
+              <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+                <div class="panel-heading"><b>Add New Location</b><div id="datetime" class="right"></div></div>
+            
+                <div  class="panel-body">
+
+
+<!-------------------------------------Create---------------------------------------->
+<form>
+  <div class="form-row">
+    
+    <div class="form-group ">
+      <label for="inputState">Serial Number</label>
+      <select [(ngModel)]="gblSelectedSiteId" name="serialNumber" id="inputState"  class="form-control" >
+        <option selected>Select Serial Number</option>
+        <option *ngFor="let item of gblSiteIdArray">{{item?.siteId ||'--'}}</option>
+      </select>
+    </div>
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Location Name</label>
+      <input  type="text" name="gblLocationName"  [(ngModel)]="gblLocationName" class="form-control"
+       id="inputAddress" placeholder="Ex:Hyd">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Latitude</label>
+      <input  type="number" step="any"  name="gblLatitude"  [(ngModel)]="gblLatitude" class="form-control"
+       id="inputAddress" placeholder="Ex:18.108">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Longitude</label>
+      <input  type="number" step="any"  name="gblLongitude"  [(ngModel)]="gblLongitude" class="form-control"
+       id="inputAddress" placeholder="Ex:78.8520">
+    </div>
+
+    
+    <!---Vendor name to coustomer name changed-->
+    <div class="form-group mr-4">
+      <label for="inputAddress">Customer Name</label>
+      <input  type="text"  name="gblVendorName"  [(ngModel)]="gblVendorName" class="form-control"
+       id="inputAddress" placeholder="Ex:Vajra IoT">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Battery AH Capacity</label>
+      <input  type="text"   name="gblbatteryAHCapacity"  [(ngModel)]="gblbatteryAHCapacity" class="form-control"
+       id="inputAddress" placeholder="Ex:3.5AH">
+    </div>
+
+
+  </div>
+
+  <button  (click)="eventAddNewLocationDetails()" class="btn btn-primary">Add</button>
+  
+     <br>
+     
+</form>
+<!----------------------------------------------------------------------------------->
+
+
+
+              </div>
+            
+            </div>
+            </div>
+      
+          </div>
+
+           <!--************************************************-->
+              
+          </div>
+      </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+
+
+
+<!----------------------------------Add New Location Model------------------------------>
+<div class="modal" id="idUpdateSiteLocationDetails" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header py-1">
+            <h2 class="modal-title">--</h2>
+            <button type="button"  mat-raised-button class="close" data-dismiss="modal" style="border: 3px solid coral; padding: 1px 1px; margin: 0px;" >&times;</button>
+        </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+           <!--************************************************-->
+           <div class="row">
+
+            <div class="col-md-12">
+              <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+                <div class="panel-heading"><b>Update Location</b><div id="datetime" class="right"></div></div>
+            
+                <div  class="panel-body">
+
+
+<!-------------------------------------Update---------------------------------------->
+<form>
+  <div class="form-row">
+    
+    <div class="form-group ">
+      <label for="inputState">Serial Number</label>
+      <select  disabled [(ngModel)]="gblSelectedSiteId" name="serialNumber" id="inputState"  class="form-control" >
+        <option selected>Select Serial Number</option>
+        <option *ngFor="let item of gblSiteIdArray">{{item?.siteId ||'--'}}</option>
+      </select>
+    </div>
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Location Name</label>
+      <input  type="text" name="gblLocationName"  [(ngModel)]="gblLocationName" class="form-control"
+       id="inputAddress" placeholder="Ex:Hyd">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Latitude</label>
+      <input  type="number" step="any" name="gblLatitude"  [(ngModel)]="gblLatitude" class="form-control"
+       id="inputAddress" placeholder="Ex:18.108">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Longitude</label>
+      <input  type="number" step="any" name="gblLongitude"  [(ngModel)]="gblLongitude" class="form-control"
+       id="inputAddress" placeholder="Ex:78.8520">
+    </div>
+
+
+<!---Vendor name to coustomer name changed-->
+    <div class="form-group mr-4">
+      <label for="inputAddress">Customer Name</label>
+      <input  type="text"  name="gblVendorName"  [(ngModel)]="gblVendorName" class="form-control"
+       id="inputAddress" placeholder="Ex:Vajra IoT">
+    </div>
+
+
+    
+    <div class="form-group mr-4">
+      <label for="inputAddress">Battery AH Capacity</label>
+      <input  type="text"   name="gblbatteryAHCapacity"  [(ngModel)]="gblbatteryAHCapacity" class="form-control"
+       id="inputAddress" placeholder="Ex:3.5AH">
+    </div>
+
+
+  </div>
+
+  <button  (click)="eventUpdateSiteLocation()" class="btn btn-primary">Update</button>
+  
+     <br>
+     
+</form>
+<!----------------------------------------------------------------------------------->
+
+
+
+              </div>
+            
+            </div>
+            </div>
+      
+          </div>
+
+           <!--************************************************-->
+              
+          </div>
+      </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->

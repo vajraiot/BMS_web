@@ -1,0 +1,194 @@
+
+    <!-------------------------------------------------------->
+       <div class="card rowBorder">
+            <div class="card-header p-0 px-1 d-flex justify-content-center cardHeaderColor">
+                BMS Status
+            </div>
+        
+            <div class="card-body p-0 pl-1">
+           <!---------body---------->
+           
+        <div class="row">
+            <div class="col-lg-4 " style="display: flex; 
+            justify-content: start;
+            align-items: center;">
+              <div>
+                <table class="tblCommnStatus">
+                  <th colspan="4" style="border-bottom: 0.5px gray solid;" >
+                      <div style="display: flex; ">
+                    <div>Total BMS</div>
+                    <div>:</div>
+                    <div>{{( totalBms(generalDataArray))}}</div>
+                  </div>
+                  </th>
+                  
+                  <tr  (click)="eventClckBmsStatus(getStringVoltageArray(generalDataArray,2))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #FF00FF;"></span>
+                    </th>
+                    <th class="thParam">String Voltage High</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getStringVoltageArray(generalDataArray,2))}}</th>
+                  </tr>
+          
+          
+                  <tr (click)="eventClckBmsStatus(getStringVoltageArray(generalDataArray,0))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #483D8B;"></span>
+                    </th>
+                    <th class="thParam">String Voltage Low</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getStringVoltageArray(generalDataArray,0))}}</th>
+                  </tr>
+          
+
+                 <!-- <tr (click)="eventClckBmsStatus(getCellVoltageArray(generalDataArray,2))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #800000;"></span>
+                    </th>
+                    <th class="thParam">Cell Voltage High</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getCellVoltageArray(generalDataArray,2))}}</th>
+                  </tr>
+
+                  
+                  
+                  <tr (click)="eventClckBmsStatus(getCellVoltageArray(generalDataArray,0))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #4682B4;"></span>
+                    </th>
+                    <th class="thParam">Cell Voltage Low</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getCellVoltageArray(generalDataArray,0))}}</th>
+                  </tr>  -->
+
+                  <tr (click)="eventClckBmsStatus(getSOCArray(generalDataArray,true))">
+                    <th class="thColor" >
+                      <span class="dot" style="background-color: #00e64d;"></span>
+                    </th>
+                    <th class="thParam">SOC Low</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getSOCArray(generalDataArray,true))}}</th>
+                  </tr>
+
+                  <!-- <tr (click)="eventClckBmsStatus(getCellTempArray(generalDataArray,true))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #F4A460;"></span>
+                    </th>
+                    <th class="thParam">Cell Temperature High</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getCellTempArray(generalDataArray,true))}}</th>
+                  </tr> -->
+
+
+
+                  <tr (click)="eventClckBmsStatus(getBmsCommArray(generalDataArray,false))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #006440;"></span>
+                    </th>
+                    <th class="thParam">Bms Communicating</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getBmsCommArray(generalDataArray,false))}}</th>
+                  </tr>
+
+
+
+                  
+                  <tr (click)="eventClckBmsStatus(getBmsCommArray(generalDataArray,true))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #8B0000;"></span>
+                    </th>
+                    <th class="thParam">Bms Not Communicating</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getBmsCommArray(generalDataArray,true))}}</th>
+                  </tr>
+
+
+                  <tr (click)="eventClckBmsStatus(getAmbientTemperatureArray(generalDataArray,true))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #000080;"></span>
+                    </th>
+                    <th class="thParam">Ambient Temperature High</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getAmbientTemperatureArray(generalDataArray,true))}}</th>
+                  </tr>
+
+
+                  <tr (click)="eventClckBmsStatus(getStringCurrentArray(generalDataArray,true))">
+                    <th class="thColor">
+                      <span class="dot" style="background-color: #8B008B;"></span>
+                    </th>
+                    <th class="thParam">String Current High</th>
+                    <th class="thColon"> :</th>
+                    <th class="thValue">{{getLength(getStringCurrentArray(generalDataArray,true))}}</th>
+                  </tr>
+
+
+                  
+                
+
+
+
+
+
+                </table>
+          
+                
+              </div>
+            </div>
+            <div class="col-lg-8 " style="padding: 0px 15px 0xp 0xp;">
+              <div id="idBmsStatusGraphs" class="clsCommnGraph"></div>
+            </div>
+          </div>
+          
+           <!----------------------->
+            </div>
+        
+        </div>
+      
+        <!-------------------------------------------------------->
+
+
+
+
+        <!--------------------------------- All  Selection----------------------------------------- -->
+<div class="modal" id="idBmsStatusModel" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header py-1">
+              <h2 class="modal-title">--</h2>
+              <button type="button"  mat-raised-button class="close" data-dismiss="modal" style="border: 3px solid coral; padding: 1px 1px; margin: 0px;" >&times;</button>
+          </div>
+  
+            <!-- Modal body -->
+            <div class="modal-body">
+             <!--************************************************-->
+             <div class="row">
+  
+              <div class="col-md-12">
+                <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+                  <div class="panel-heading"><b>Table</b><div id="datetime" class="right"></div></div>
+              
+                  <div  class="panel-body" style="overflow-x: scroll;">
+                  <!----------Body--------------------->
+                   <app-string-param [receivedGeneralData]="filteredGeneralDataArray"></app-string-param>
+                  <!----------------------------------->
+                </div>
+              
+              </div>
+              </div>
+        
+            </div>
+  
+             <!--************************************************-->
+                
+            </div>
+        </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------->
+  
+        
+        

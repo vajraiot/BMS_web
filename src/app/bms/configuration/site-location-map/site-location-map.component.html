@@ -1,0 +1,83 @@
+<div id="idMapCard" class="card p-0">
+  <div class="card-header p-0 px-0 cardHeaderColor">
+   Site Location
+  </div>
+<div class="card-body p-1">
+<!-----------------Map------------->
+<div id="idMap" *ngIf="gblSiteIdList!=null">
+  <agm-map
+[zoom]="10" 
+[latitude]="getLatitude(gblSiteIdList)"
+[longitude]="getLongitude(gblSiteIdList)"
+[disableDefaultUI]="true"
+[zoomControl]="true"
+(mapClick)="close_window($event)"
+[fullscreenControl]="true"
+[streetViewControl]="true"
+[mapTypeControl]="true"    >
+    <div  >
+
+        <!------------------------agm marker-------------------------------------------->
+        <agm-marker
+          [latitude]="getLatitude(gblSiteIdList)"
+          [longitude]="getLongitude(gblSiteIdList)"
+          (markerClick)="select_marker(infoWindow)"
+          [iconUrl]="getMarker()" >
+          <!--/***********************info window*****************************/-->
+          <agm-info-window #infoWindow>
+            <div class="dvInfoWindow">
+              <table id="customers">
+                <th colspan="4">
+                  <div
+                    style="
+                      livemewadata: relative;
+                      text-align: center;
+                      background: burlywood;
+                    "
+                  >
+                    <span>{{getLocationName(gblSiteIdList)}}</span>
+                  </div>
+                </th>
+                
+                <tr>
+                  <td class="infoTableParameter">latitude</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{getLatitude(gblSiteIdList)}}</td>
+                </tr>
+
+                <tr>
+                  <td class="infoTableParameter">longnitude</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{ getLongitude(gblSiteIdList) }}</td>
+                </tr>
+
+                <!---Vendor name to coustomer name changed-->
+                <tr>
+                  <td class="infoTableParameter">Customer Name</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{gblSiteIdList?.siteLocation?.vendorName || '--'}}</td>
+                </tr>
+
+                
+                <tr>
+                  <td class="infoTableParameter">Battery AH Capacity</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{gblSiteIdList?.siteLocation?.batteryAHCapacity|| '--'}}Ah</td>
+                </tr>
+
+              </table>
+            </div>
+          </agm-info-window>
+          <!--/****************************************************/-->
+        </agm-marker>
+<!---------------------------------------------------------------------->
+
+     
+    </div>
+  
+</agm-map>
+</div>
+<!--------------------------------->
+</div>
+</div>
+

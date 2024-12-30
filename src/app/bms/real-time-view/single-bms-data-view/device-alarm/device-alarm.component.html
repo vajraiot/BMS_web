@@ -1,0 +1,205 @@
+<!--<div *ngIf="gblAlarmsData != null" id="idTable">
+  <table id="customers">
+    <tr>
+      <td class="infoTableParameter">BankCharger</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;"
+        [ngStyle]="{'color': gblAlarmsData.bankCycleDC ?'red':'green'}"
+        >{{ chargeDischarge(gblAlarmsData.bankCycleDC) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">State of Charge</td>
+      <td Class="infoTableColon">:</td>
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        [ngStyle]="{'color': gblAlarmsData.socLN ?'red':'green'}"
+        >{{ stateOfCharge(gblAlarmsData.socLN) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">String Voltage</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        [ngStyle]="intToColourChange(gblAlarmsData.stringVoltageLHN)">{{ stringVoltage(gblAlarmsData.stringVoltageLHN) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">String Current</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;"
+        [ngStyle]="{'color': gblAlarmsData.stringCurrentHN ?'red':'green'}" >
+            {{ stringCurrent(gblAlarmsData.stringCurrentHN) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">String Comn Status</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        [ngStyle]="{'color': gblAlarmsData.bmsSedCommunicationFD ?'red':'green'}" >
+          {{ StringComnStatus(gblAlarmsData.bmsSedCommunicationFD) }}
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">Cell Comn Status</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        [ngStyle]="{'color': gblAlarmsData.cellCommunicationFD ?'red':'green'}"
+         >{{ CellComnStatus(gblAlarmsData.cellCommunicationFD) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">Cell Voltage</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        [ngStyle]="intToColourChange(gblAlarmsData.cellVoltageLHN)"
+        >{{ cellVoltage(gblAlarmsData.cellVoltageLHN) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">Cell Temperature</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;" 
+        
+        [ngStyle]="{'color': gblAlarmsData.cellTemperatureHN ?'red':'green'}"
+        >{{ cellTemperature(gblAlarmsData.cellTemperatureHN) }}</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="infoTableParameter">Ambient Temperature</td>
+      <td Class="infoTableColon">:</td>
+
+      <td Class="infoTableValue">
+        <div style="float: left;"
+        
+        [ngStyle]="{'color': gblAlarmsData.ambientTemperatureHN ?'red':'green'}"
+        >{{ AmbientTemperature(gblAlarmsData.ambientTemperatureHN) }}</div>
+      </td>
+    </tr>
+  </table>
+</div>-->
+
+<!----*************Alarms New Design***********-->
+<div id="idAlarmsdv">
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">BankCharger</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.bankCycleDC ?'red':'green'}"> 
+       {{ chargeDischarge(gblAlarmsData.bankCycleDC) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">State of Charge  </div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.socLN ?'red':'green'}"> 
+       {{stateOfCharge(gblAlarmsData.socLN)}}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">String Voltage  </div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="intToColourChange(gblAlarmsData.stringVoltageLHN)"> 
+    {{ stringVoltage(gblAlarmsData.stringVoltageLHN) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">String Current</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.stringCurrentHN ?'red':'green'}" >
+    {{ stringCurrent(gblAlarmsData.stringCurrentHN) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">String Comn Status</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.bmsSedCommunicationFD ?'red':'green'}"> 
+    {{ StringComnStatus(gblAlarmsData.bmsSedCommunicationFD) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">Cell Comn Status  </div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue"  [ngStyle]="{'color': gblAlarmsData.cellCommunicationFD ?'red':'green'}">
+    {{ CellComnStatus(gblAlarmsData.cellCommunicationFD) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">Cell Voltage</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="intToColourChange(gblAlarmsData.cellVoltageLHN)"> 
+    {{ cellVoltage(gblAlarmsData.cellVoltageLHN) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+  
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">Cell Temperature</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.cellTemperatureHN ?'red':'green'}">
+    {{ cellTemperature(gblAlarmsData.cellTemperatureHN) }}  </div>
+  </div>
+  <!---------------------------------------->
+
+
+<!----------------------------------------->
+<div class="eachAlarm">
+  <div class="alarmParameter">Ambient Temperature</div>
+  <div class="alarmColon"> :  </div>
+  <div class="alarmValue" [ngStyle]="{'color': gblAlarmsData.ambientTemperatureHN ?'red':'green'}" >
+    {{ AmbientTemperature(gblAlarmsData.ambientTemperatureHN) }}</div>
+  </div>
+  <!---------------------------------------->
+
+</div>
+

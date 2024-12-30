@@ -1,0 +1,10 @@
+.graphBox
+{
+    height: 150px;
+    min-width: 100px;
+    width: 100%;
+    border: 0.5px gray solid;
+    overflow: hidden !important;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}

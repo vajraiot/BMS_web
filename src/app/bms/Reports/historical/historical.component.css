@@ -1,0 +1,69 @@
+.form-group select 
+{
+    width: 100%;
+    border-left: 5px #a51e7b solid;
+}
+label {
+    display: inline-block;
+    margin-bottom: 0.001rem;
+    font-size: 0.81rem;
+    line-height: 0.1rem;
+}
+
+.customHeaderWidthClass
+{
+   max-width: 180px;
+    width: 180px;
+    min-width: 180px;
+    display: flex; 
+    justify-content: center;
+    border-left: 0.2px solid gray;
+    text-transform: capitalize;
+}
+
+
+.cellColoumn0
+{
+    max-width: 180px;
+    width: 180px;
+    min-width: 180px;
+    display: flex; 
+    justify-content: center;
+    border-left: 0.2px solid gray;
+    text-transform: capitalize;    
+}
+.cellColoumn
+{
+    
+   max-width: 100px;
+   width: 100px;
+   min-width: 100px;
+   display: flex; 
+   justify-content: center;
+}
+
+#idCellTable
+{
+    border: 0.5px solid gray;
+    width: 100%;
+}
+
+#idCellTable th
+{
+    background-color:#bac9cc;
+}
+
+.tableRighRow
+{
+display: flex;
+justify-content: flex-end;
+align-items: center;
+min-width: 30px;
+}
+.tableLeftRow
+{
+   /* display: flex;*/
+    align-items: center;
+    min-width: 30px;
+}
+

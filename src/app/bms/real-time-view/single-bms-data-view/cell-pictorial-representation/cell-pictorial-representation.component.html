@@ -1,0 +1,66 @@
+<!-- <div class="SingleCell shadow">
+    <div class="cellPic">
+      <img
+        style="width: 30px; height: 50px;"
+        [src]="glbSingleCellInformation.cellPics"
+      />
+    </div>
+
+    <div class="cellCard">
+      <div class="cellheader text-center px-1 py-0 " [ngStyle]="glbSingleCellInformation.cellHeaderColor">
+        <div style="font-size: 0.7rem;" >Cell {{glbSingleCellInformation.cellNumber}}</div>
+      </div>
+      <div class="cellCardBody d-block justify-content-between p-1" style="line-height: 12px;">
+     <div style="display: inline-flex; line-height: 12px;">
+    <div style="margin-right:5px;">
+      <img style="width: 10px; height: 10px;  margin-top: -5px;" src="assets/images/png/voltage.png" >
+    </div>
+    <div>
+      <div class="VoltageTempValues">{{glbSingleCellInformation.cellVoltage}}V</div>
+    </div>
+
+     </div>
+
+
+
+     <div style="display: inline-flex; line-height: 12px;">
+      <div style="margin-right:5px;">
+        <img style="width: 10px; height: 10px;  margin-top: -5px;" src="assets/images/png/temperature.png" >
+      </div>
+      <div>
+        <div class="VoltageTempValues">{{glbSingleCellInformation.cellTemperature}}°C</div>
+      </div>
+  
+       </div>
+
+      
+      </div>
+    </div>
+  </div>  -->
+  <div id="completeCell" class="completeCell" >
+    
+<div id="idImage" style="display: flex; justify-content: center; align-items: center;" >
+<img style="width: 50px; height: 20px;" [src]="glbSingleCellInformation.cellPics" >
+</div >
+
+<div id="idMargin" class="margin"></div>
+<!-----------information----------------->
+<div id="idInformation" class="information" style="display: flexbox;">
+<div class="cellNumber" style="border:0.1px solid white" [ngStyle]="glbSingleCellInformation.cellHeaderColor" >cell <span style="font-weight: bolder; margin-left: 3px !important;">{{glbSingleCellInformation.cellNumber}}</span> </div>
+
+
+<div id="idVolt" >
+<div class="symbl"><img style="width: 12px;height: 12px;" src="assets/images/png/VoltageWhite.png" > </div>
+<div  class="vlu" [ngStyle]="getVoltValueColorIndication(glbSingleCellInformation)" >{{glbSingleCellInformation.cellVoltage}}V</div>
+</div>
+
+<div id="idTemp" >
+<div class="symbl"><img style="width: 12px;height: 12px;" src="assets/images/png/TemperatureWhite.png" > </div>
+<div  [ngStyle]="getTempValueColorIndication(glbSingleCellInformation)" class="vlu">{{glbSingleCellInformation.cellTemperature}}°C</div>
+
+</div>
+  </div>
+  </div>
+
+
+

@@ -1,0 +1,11 @@
+.form-group select 
+{
+    width: 100%;
+    border-left: 5px #a51e7b solid;
+}
+label {
+    display: inline-block;
+    margin-bottom: 0.001rem;
+    font-size: 0.81rem;
+    line-height: 0.1rem;
+}

@@ -1,0 +1,66 @@
+<div class="card shadow p-0">
+    <div class="card-header card-header-data-view p-1 cardHeaderColor">
+      Charge-Cycle-Wise
+    </div>
+    <div class="card-body  card-body-data-view">
+      <!---------------------------------------------------------->
+      <table id="customers">
+        <tr>
+          <td class="infoTableParameter">Peak Charge Current</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>
+              {{ gblBmsDeviceData?.systemPeakCurrentInChargeOneCycle }}
+            </div>
+            <div class="parameterSymbol">A</div>
+            </div>
+          </td>
+        </tr>
+
+        
+
+        <tr>
+          <td class="infoTableParameter">Average Charge Current</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+             <div>
+              {{ gblBmsDeviceData?.averageChargingCurrent }}</div>
+              <div class="parameterSymbol">A</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Ampere HourIn</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>
+              {{ gblBmsDeviceData?.ahInForOneChargeCycle }}
+            </div>
+            <div class="parameterSymbol">Ah</div>
+            
+            </div>
+          </td>
+        </tr>
+
+        
+
+        <tr>
+          <td class="infoTableParameter">Charge Time</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue"><div  class="bmsValue" style="float: left;">
+            {{ convertersService.secondsTohhmmss(gblBmsDeviceData?.chargeTimeCycle) }}
+          </div></td>
+        </tr>
+        
+      </table>
+      <!---------------------------------------------------------->
+    </div>
+  </div>

@@ -1,0 +1,128 @@
+.infoTableParameter
+{
+	text-align: left;
+	font-size: 11px;
+	/*width: 40%;*/
+	min-width: 120px;
+}
+.infoTableValue
+{
+font-weight: bold;
+text-align: left;
+
+}
+
+.infoTableColon
+{
+	padding-right: 4px;
+	font-weight: bold;
+}
+
+.padingRightCol
+{
+	padding-right: 1px;
+    padding-left: 1px;
+	
+}
+
+.padingCol
+{
+	padding-right: 1px;
+    padding-left: 11px;
+	
+}
+
+.eachAlarm
+{   display: inline-flex;
+    /* flex-flow: wrap; */
+    justify-content: space-around;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+.alarmParameter
+{
+    width: 130px;
+    font-size: 0.8rem;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-weight: lighter;
+    display: flex;
+    justify-content: flex-end;
+}
+.alarmColon
+{
+	font-weight: bolder;
+    font-size: 1.2rem;
+    margin-left: 2px;
+    margin-right: 2px;
+    line-height: 1.5rem;
+
+}
+.alarmValue
+{
+
+    width: 100px;
+    font-size: 1rem;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.alert
+{
+    padding: 2px;
+    margin-bottom: 20px;
+    margin-top: 16px;
+}
+
+
+.singleAlarm
+{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.alarmParam
+{
+    min-width: 125px;
+    font-size: 0.8rem;
+}
+.alarmColon
+{
+
+
+}
+
+.alarmValue
+{
+font-weight: bolder;
+}
+
+.card
+{
+border: 0.9px solid gray;
+
+overflow: hidden !important;
+border-radius: 15px !important;
+}
+.card-header
+{
+    display: flex;
+    justify-content: center;
+    line-height: 1.3rem;
+    font-size: 0.72rem;
+    text-transform: uppercase !important;
+}
+.card-body
+{
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 2px !important;
+}
+.customAlign
+{
+    overflow: hidden !important;
+    border-radius: 15px !important;
+    margin-bottom: 5px !important;
+}
+

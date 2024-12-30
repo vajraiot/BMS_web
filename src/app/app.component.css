@@ -1,0 +1,65 @@
+.sticky-top {
+  z-index: 200 !important;
+}
+
+.myActive {
+  font-weight: 500 !important;
+  color: white !important;
+  /* border: 1px red solid !important;*/
+}
+
+.myActive div:parent {
+  color: white !important;
+  font-size: 1px !important;
+}
+
+
+.navbar {
+  padding: 0rem;
+  margin-bottom: 0.2rem;
+}
+
+.dropdown .dropdown-menu {
+  border-radius: 0;
+}
+
+.clsProjectName {
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.orgImage {
+  width: 99%;
+  height: 50px;
+}
+
+/* Medium devices (tablets, 768px and up)
+The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+
+  .clsProjectName {
+    font-weight: bold;
+    color: white;
+    font-size: 2.0rem;
+    text-transform: uppercase;
+  }
+
+  .orgImage {
+    width: 130px;
+    height: 60px;
+  }
+}
+
+/* siddhartha */
+.navbar-dark .navbar-nav .nav-link {
+  /*color: white; */
+  color: black;
+}

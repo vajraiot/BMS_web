@@ -1,0 +1,97 @@
+<div class="card shadow p-0">
+    <div class="card-header card-header-data-view p-1 cardHeaderColor">
+      Cummulative
+    </div>
+    <div class="card-body  card-body-data-view">
+      <!---------------------------------------------------------->
+      <table id="customers">
+        <tr>
+          <td class="infoTableParameter">Charge-Discharge Cycles</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              {{ gblBmsDeviceData?.chargeOrDischargeCycle }}
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Ampere HourIn</td>
+          <td Class="infoTableColon">:</td>
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>
+              {{ gblBmsDeviceData?.cumulativeAHIn }}
+            </div>
+            <div class="parameterSymbol">Ah</div>
+            </div>
+          </td>
+          <!--<td Class="infoTableValue"> <div  class="bmsValue" style="float: left;">{{liveMewaData.flowMeter2}} </div> <div style="float: left;     font-size: 8px;margin-top: 7px; padding-left: 1px;">LPM</div> </td>-->
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Ampere HourOut</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>{{
+                gblBmsDeviceData?.cumulativeAHOut
+              }}
+              </div>
+              <div class="parameterSymbol">Ah</div>
+            </div>
+          </td>
+        </tr>
+
+       <!-- <tr>
+          <td class="infoTableParameter">Depth Of Discharge(DOD)</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>
+              {{
+                gblBmsDeviceData?.dodLatestValueForEveryCycle
+              }}
+            </div>
+            <div class="parameterSymbol">%</div>
+            </div>
+          </td>
+        </tr>  -->
+
+        <tr>
+          <td class="infoTableParameter">Charging Energy</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>{{ gblBmsDeviceData?.totalChargingEnergy }} </div>
+              <div class="parameterSymbol">kwh</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Discharging Energy</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue"><div  class="bmsValue" style="float: left;">
+            <div>{{ gblBmsDeviceData?.totalDischargingEnergy }} </div>
+            <div class="parameterSymbol">kwh</div>
+            </div></td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Battery Run Hours</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue"><div  class="bmsValue" style="float: left;">
+            {{ convertersService.secondsTohhmmss(gblBmsDeviceData?.batteryRunHours) }}
+          </div></td>
+        </tr>
+      </table>
+      <!---------------------------------------------------------->
+    </div>
+  </div>

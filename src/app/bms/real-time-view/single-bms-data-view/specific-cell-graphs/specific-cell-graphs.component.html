@@ -1,0 +1,71 @@
+
+<div class="row" style="display: flex;justify-content: space-between; width: 100%;">
+
+    <div class="col-lg-2">
+    <div class="inputs" style="margin-bottom: 5px;">
+    <input id="inptStartDate" #inputDateRef (ngModelChange)="ChangeDetected($event)"  name="data" [(ngModel)]="ngMdlStartDate" placeholder="Start Date" class="calendarInput"
+        [owlDateTimeTrigger]="startDateRef" [owlDateTime]="startDateRef">
+    <owl-date-time [pickerType]="'calendar'" #startDateRef></owl-date-time>
+    </div>
+</div>
+
+<div class="col-lg-2">
+   <!---------------------Excell button----------------------->
+   <div  style="display: flex; justify-content: flex-end; align-items: center;">
+
+    <img src="assets/images/png/ExcellTrans100_98.png" (click)="downLoadExcell()" style="width: 35px;height: 35px;"
+      matTooltip="Click To Download Data.">
+  </div>
+  <!-------------------------------------------->
+</div>
+</div>
+
+<div class="card shadow p-0" style="width: fit-content;"> 
+    <div class="card-header card-header-data-view p-1 cardHeaderColor" style="display: flex;    justify-content: center;    align-items: center;    line-height: 25px;">
+        <div id="idCellNumber" style="display: flex;"> 
+        <div style="margin-right: 5px;">Cell Number</div> 
+        <strong>{{specificCellInput.cellNumber}}</strong>
+      </div>
+    </div>
+    <div class="card-body  card-body-data-view" style="width: 100%;">
+    
+        
+<div id="idCellGraphs">
+<div style="position: relative;">
+    <div #volateCellGraphRef id="idVolateCellGraph"  class="highchartDimensions grph"   >
+   </div>
+      
+    <!-----------------------------Radio Buttons----------------------->
+    <div *ngIf="false" id="idRadioButtons" style="display: flex; justify-content: center;">
+       <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedChart" (change)="radioChange($event)">
+       
+        <mat-radio-button value="{{chartType.SPLINE}}">Line</mat-radio-button>
+        <mat-radio-button value="{{chartType.COLUMN}}">Column</mat-radio-button>
+          </mat-radio-group>
+         </div>
+   <!-------------------------------------------------------------------->      
+   
+   </div>   
+
+
+
+   <div style="position: relative;">
+    <div #temperatureCellGraphRef id="idTemperatureCellGraph" class="highchartDimensions  grph"   >
+   </div>
+      
+    <!-----------------------------Radio Buttons----------------------->
+    <div *ngIf="false" id="idRadioButtons" style="display: flex; justify-content: center;">
+       <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedChart" (change)="radioChange($event)">
+       
+   <mat-radio-button value="{{chartType.SPLINE}}">Line</mat-radio-button>
+   <mat-radio-button value="{{chartType.COLUMN}}">Column</mat-radio-button>
+   
+     </mat-radio-group>
+         </div>
+   <!-------------------------------------------------------------------->      
+   
+   </div>   
+
+</div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div id="idLocation" class="row mb-1">
+  <div class="col-lg-12 px-1">
+    <div *ngIf="commnStatusArray!=null"
+      style="
+        border-radius: 10px;
+        border: 1px gray solid;
+        width: 100%;
+        overflow: hidden;
+      "
+    >
+      <app-all-sites-locations [receiveCommnstatus]="commnStatusArray" ></app-all-sites-locations>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mb-1">
+  <div class="col-lg-6 " style="padding: 0;">
+    <div >
+    <app-all-sites-commn-status [receiveCommnstatus]="commnStatusArray" > </app-all-sites-commn-status>
+  </div>
+  </div>
+
+  <div class="col-lg-6 " style="padding: 0;">
+    <div *ngIf="generalDataArray!=null">
+   <app-dash-board-bmsstatus [receiveGeneralDataArray]="generalDataArray"></app-dash-board-bmsstatus>
+  </div>
+  </div>
+
+</div>
+
+ <!--------Hiden---------------->
+<div id="idAllSiteAlarms" *ngIf="false" class="row">
+    <div class="col-lg-12">
+  <app-all-sites-alarms [receiveGeneralDataArray]="generalDataArray" ></app-all-sites-alarms>
+</div>
+</div>

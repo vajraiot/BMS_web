@@ -1,0 +1,157 @@
+<div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="siteId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="min-width:120px; width: 120px;"> Site Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'"
+        style="min-width:120px; width: 120px; padding-left: 10px;">
+        {{row?.siteId ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="serialNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Serial Number
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.serialNumber ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cellsConnectedCount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cells Count
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.cellsConnectedCount ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stringvoltage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> String Voltage
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.stringvoltage ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="systemPeakCurrentInChargeOneCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+        System Peak Current InCharge
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.systemPeakCurrentInChargeOneCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="averageDischargingCurrent">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Average Discharging Current
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?. averageDischargingCurrent||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="averageChargingCurrent">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Average Charging Current
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.averageChargingCurrent ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ahInForOneChargeCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ah In For Charge Cycle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.ahInForOneChargeCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ahOutForOneDischargeCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ah Out For Discharge Cycle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.ahOutForOneDischargeCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cumulativeAHIn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cumulative Ah In
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.cumulativeAHIn ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cumulativeAHOut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cumulative Ah Out
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.cumulativeAHOut ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="chargeTimeCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Charge Time Cycle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{ convertersService.secondsTohhmmss(row?.deviceData[0]?.chargeTimeCycle) }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dischargeTimeCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Discharge Time Cycle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{convertersService.secondsTohhmmss(row?.deviceData[0]?.dischargeTimeCycle) ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalChargingEnergy">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Total Charging Energy
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.totalChargingEnergy ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalDischargingEnergy">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Total Discharging Energy
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.totalDischargingEnergy ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="everyHourAvgTemp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Every Hour Average Temperature
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.everyHourAvgTemp ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cumulativeTotalAvgTempEveryHour">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+        Cumulative Total Average Temperature Every Hour
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.cumulativeTotalAvgTempEveryHour ||'--'}} </mat-cell>
+    </ng-container>
+    ​
+    <ng-container matColumnDef="socLatestValueForEveryCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+        State Of Charge (SOC)
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.socLatestValueForEveryCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dodLatestValueForEveryCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+        Depth of Discharge (DOD)
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.dodLatestValueForEveryCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="systemPeakCurrentInDischargeOneCycle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+        System Peak Current In Discharge Cycle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.systemPeakCurrentInDischargeOneCycle ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="instantaneousCurrent">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Instantaneous Current
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.instantaneousCurrent||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ambientTemperature">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ambient Temperature
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{row?.deviceData[0]?.ambientTemperature ||'--'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="batteryRunHours">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Battery Run Hours
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+        {{ convertersService.secondsTohhmmss(row?.deviceData[0]?.batteryRunHours )}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="    background: orange;
+      height: 1px;
+      min-height: 29px;
+      width: fit-content;
+      "></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+      [ngClass]="{'highlight': selectedRowIndex == row?.id,'select-row': row?.selected}" #matrowclicking
+      (click)="getRecord(row)"></mat-row>
+  </mat-table>
+</div>

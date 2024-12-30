@@ -1,0 +1,285 @@
+<div class="row" style="height: 195px;">
+  <!-----------------------Charge status------------------------>
+  <div class="padingCol col-lg-3">
+    <!-----------------------Charge status------------------------>
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleChargeDischarge(gblAlarmsData)">
+          Battery Status
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{chargeDischarge(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+  <!-----------------------String Voltage------------------------>
+  <div class="padingRightCol col-lg-3">
+    <!-----------------------String Voltage------------------------>
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleStringVoltage(gblAlarmsData)">
+          String Voltage
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{stringVoltage(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+  <!-----------------------String Commn Status------------------------>
+  <div class="padingRightCol col-lg-4">
+    <!-----------------------String Commn Status------------------------>
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleStringComnStatus(gblAlarmsData)">
+          String Communication Status
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{StringComnStatus(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+  <!-----------------------EB status------------------------>
+  <div class="padingRightCol col-lg-2">
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleCommonStatus(!gblAlarmsData.ebStatus)">
+          EB Status
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{commonStatus(!gblAlarmsData.ebStatus)}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!---------------------------EB status end----------------------------->
+
+  <!-----------------------State Of Charge(SOC)------------------------>
+  <div class="padingCol col-lg-3">
+    <!-----------------------State Of Charge(SOC)------------------------>
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleStateOfCharge(gblAlarmsData)">
+          State Of Charge
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{stateOfCharge(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+
+  <!-----------------------String Current------------------------>
+  <div class="padingRightCol col-lg-3">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleStringCurrent(gblAlarmsData)">
+          String Current
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{stringCurrent(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+
+  <!-----------------------Ambient Temperature------------------------>
+  <div class="padingRightCol col-lg-4">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleAmbientTemperature(gblAlarmsData)">
+          Ambient Temperature
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{ambientTemperature(gblAlarmsData)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+  <!-----------------------bg status------------------------>
+  <div class="padingRightCol col-lg-2">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleCommonStatus(!gblAlarmsData.dgStatus)">
+          DG Status
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          {{commonStatus(gblAlarmsData.dgStatus)}}
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+  <!---------------------------------------Cell Details---------------------------------------->
+
+  <!-----------------------Cell Voltage------------------------>
+  <div class="padingCol col-lg-3">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" style="background-color: gray; color: white;">
+          <div style="display: flex;">
+            <div>Cell Voltage</div>
+            <div style="margin-left: 2px; font-weight: 600;">({{getCellCount(gblBmsDeviceData)}})</div>
+          </div>
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          <div style="display: block;">
+            <div style="display: flex;">
+              <div>Low Voltages</div>
+              <div>:</div>
+              <div>{{getArrayLength(getVoltageCount(gblBmsDeviceData,0))}}</div>
+            </div>
+
+            <div style="display: flex;">
+              <div>High Voltages</div>
+              <div>:</div>
+              <div>{{getArrayLength(getVoltageCount(gblBmsDeviceData,2))}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+  <!-----------------------Cell Temp------------------------>
+  <div class="padingRightCol col-lg-3">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" style="background-color: gray; color: white;">
+          <div style="display: flex;">
+            <div>Cell Temperature</div>
+            <div style="margin-left: 2px; font-weight: 600;">({{getCellCount(gblBmsDeviceData)}})</div>
+          </div>
+
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          <div style="display: block;">
+
+            <!--<div style="display: flex;">
+    <div >Low</div>
+    <div >:</div>
+    <div >{{getTemperatureCount(gblBmsDeviceData,0)}}</div>
+     </div> -->
+
+            <div style="display: flex;height: 37px;align-items: center;">
+              <div>High</div>
+              <div>:</div>
+              <div>{{getTemperatureCount(gblBmsDeviceData,2)}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+
+
+  <!-----------------------Cell Communication------------------------>
+  <div class="padingRightCol col-lg-4">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" style="background-color: gray; color: white;">
+
+          <div style="display: flex;">
+            <div>Cell Communication</div>
+            <div style="margin-left: 2px; font-weight: 600;">({{getCellCount(gblBmsDeviceData)}})</div>
+          </div>
+        </div>
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          <div style="display: block;">
+            <div style="display: flex;">
+              <div>Communicating</div>
+              <div>:</div>
+              <div>{{getCommunicationgStatusCount(gblBmsDeviceData,1)}}</div>
+            </div>
+
+            <div style="display: flex;">
+              <div>Not Communicating</div>
+              <div>:</div>
+              <div>{{getCommunicationgStatusCount(gblBmsDeviceData,0)}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+
+
+  <!-------Buzzer-------->
+  <div class="padingRightCol col-lg-2">
+
+    <div class="alert customAlign shadow p-0 m-0" role="alert">
+      <!-------card-------->
+      <div class="card p-0" style="color: black;">
+        <div class="card-header p-0 px-1" [ngStyle]="ngStyleCommonStatus(!gblAlarmsData.buzzer)">
+          <div style="display: flex;">
+            <div>Buzzer</div>
+          </div>
+        </div>
+
+        <div class="card-body p-1" style="display: flex; justify-content: center;">
+          <div style="display: block;">
+            <div style="display: flex;height: 37px;align-items: center;">
+              <div>{{commonStatus(gblAlarmsData.buzzer)}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------->
+    </div>
+    <!----------------------------------------------------------->
+  </div>
+  <!------------------------------------------------------------------------------------------->
+</div>

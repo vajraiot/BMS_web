@@ -1,0 +1,161 @@
+
+  <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb m-0 p-2">
+      <li class="breadcrumb-item active" aria-current="page">/RawData</li>
+    </ol>
+  </nav>
+
+<div class="row" style="padding-top: 5px;">
+
+
+    <div class="col-lg-2 col-sm-12 FistRowColoumn">
+      <div class="row">
+        <div class="col-md-10 col-xs-10 col-10" style="padding: 0px;">
+          <div style="padding-left: 1px;  margin-top: 4px;">
+  
+            <mat-form-field class="example-full-width" style="width: 100%;">
+  
+              <input id="myInput" matInput [formControl]="searchKeyWordControl" type="text" name="myCountry"
+                placeholder="Searching Keyword In Hex"                 [(ngModel)]="searchingKeyWordInput">
+  
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="col-md-2 col-xs-2 col-2" style="margin-top:12px; padding: 0;">
+          <button mat-button *ngIf="searchingKeyWordInput" mat-icon-button aria-label="Clear"
+            (click)="searchingKeyWordInput=''">
+            <mat-icon style="font-size: 18px;">close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+              <div class="col-lg-2 col-4" >
+                <div id="idGetButton" style="padding-top: 9px; padding-bottom: 5px;">
+                <input  type="button"  value="Refresh"  class="btn btn-success" (click)="RefreshButton()" style=" width: 58px;  height: 27px;  padding: 1px;  border-radius: 7px;"></div>
+            </div>
+        
+        
+        <div class="col-lg-2  col-6" >
+          <div class="slider" style="padding-top: 4px;">
+            <mat-slide-toggle (change)="sliderOnChange($event)">Live Data.</mat-slide-toggle>
+          </div>
+        </div>
+        
+        <div class="col-12 col-lg-4 ">
+        
+            <div class="clsLastUpdatedTime" style="padding-top: 10px;">
+                <div style="position: relative; float: left;">
+                  Last UpdatedTime: &nbsp;&nbsp;    
+                </div>
+            
+                <div style="position: relative; float: left;">
+                  {{LastTime}}
+                </div>
+              
+              </div>
+        
+        </div>
+        
+        </div>
+  
+        <!--/******************************************2nd Row************************************/-->
+        <div class="row">
+  <div class="col-md-2">
+  
+    <div class="card shadow"  style="text-align: center;">
+      <div class="card-body   p-0" style="max-height: 432PX;   min-height: 432PX; overflow: auto;">
+  
+    <mat-table #table [dataSource]="dataSource" [trackBy]="trackById">
+  
+  
+          <ng-container matColumnDef="serverTime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerBackgroundColour" > Server Time
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"  [ngStyle]="getColor(row)"  style="font-weight: bold; border: 1px solid;">
+              {{ convertOwlDatetimeToCustomDate(row.serverTime)}} </mat-cell>
+          </ng-container>
+  
+         <!-- <ng-container matColumnDef="rawdata">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > RawData
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"   style="overflow: auto; margin-right: 40px;">
+              {{row.rawdata}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="parsed">
+            <mat-header-cell *matHeaderCellDef mat-sort-header  style="position: relative; left: 10%">IsParsed
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"    style="font-weight: bold;position: relative; left: 9%;">
+              {{ parsedStatues(row.parsed)}} </mat-cell>
+          </ng-container>
+        -->
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"   ></mat-header-row>
+  
+  
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  
+            [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+            (click)="getRecord(row)"></mat-row>
+  
+  
+        </mat-table>
+  
+      </div>
+    </div>
+      
+  </div>
+  
+  
+  <div class="col-md-5">
+  
+      <div class="card shadow"  style="text-align: center;">
+          <div class="card-header bg-warning p-0"><b>Raw Data</b><div id="datetime" class="right"></div>    </div>
+  
+          <div class="card-body  " style="max-height: 396PX;   min-height: 396PX;">
+  
+            
+            <div   *ngIf="selectedColoumnData!=null" style="    word-wrap: break-word;overflow: auto;">
+             {{selectedColoumnData.rawdata}}
+            </div>
+        
+  
+          </div>
+      </div>
+  
+  </div>
+  
+  <div class="col-md-5">
+  
+      <div class="card shadow"  style="text-align: center;">
+          <div class="card-header bg-warning p-0 "><b>Ascii Data</b><div id="datetime" class="right"></div>    </div>
+  
+          <div class="card-body  " style="max-height: 396PX;   min-height: 396PX;">
+  
+            
+            <div *ngFor="let item of splittedDataArray;let i = index" [attr.data-index]="i">
+              <ul style="font-weight: bold;    text-align: initial;"> {{stringPadding(i)}}-  {{ hex2Ascii(item)}}</ul>
+            </div>
+        
+  
+          </div>
+      </div>
+  
+  </div>
+        </div>
+  
+        <!----------------------------------------3rd Row---------------------------------------->
+  
+        
+        <div class="row">
+            <div class="col-md-3"></div>
+  <div class="col-md-6">
+          <div class="example-container mat-elevation-z8 ">
+                  <mat-paginator #paginator [length]="TotalPages" [pageSizeOptions]="[1,3,5,10,20, 25,50, 100,250,500,1000]" class="matPaginatorContainer"
+                    [pageSize]="PageSize" (page)="handlePage($event)" showFirstLastButtons>
+                  </mat-paginator>
+                </div>
+  </div>
+        </div>
+  

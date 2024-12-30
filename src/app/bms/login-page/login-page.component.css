@@ -1,0 +1,133 @@
+
+.login {
+    width: 390px;
+    height: 350px;
+    background: #fff;
+    color: black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 30px 30px;
+    background-image: url(/assets/logo/v_png.png);
+    background-size: cover;
+     opacity: 0.95;
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 10px;
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login input[type="text"],
+input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+}
+
+.login input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #de7015;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.login input[type="create"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #c83e6a;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.login input[type="facebook"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1f4272;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.login input[type="submit"]:hover,
+.login input[type="create"]:hover,
+.login input[type="facebook"]:hover {
+    cursor: pointer;
+    background: #383838;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+}
+
+.login a {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+
+.login a:hover {
+    color: #757575;
+}
+
+/* .logo{
+  top: 10px;
+  left: 73%;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  top: 40px;
+  right: 16px;
+} */
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+
+}
+
+/* Bottom right text */
+.bottom-right-duo {
+  position: absolute;
+  bottom: 22px;
+  right: 275px;
+}

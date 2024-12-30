@@ -1,0 +1,24 @@
+<table *ngIf="gblCellsData!=null" class="table table-sm table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Voltage</th>
+            <th scope="col">Temperature</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let cell of gblCellsData" style="font-size: 9px;">
+
+            <th scope="row">{{cell.cellNumber}}</th>
+            <td>{{cell.cellVoltage}}</td>
+            <td>{{cell.cellTemperature}}</td>
+
+        </tr>
+
+
+    </tbody>
+
+</table>

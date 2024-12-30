@@ -1,0 +1,105 @@
+<div *ngIf="showHead" class="container-fluid">
+  <div class="row" style="background-color: #052440;">
+    <div class="col-2 pl-0">
+      <img src="assets/images/png/Vajra_Full New_logo_logo.png" class="orgImage rounded " alt="...">
+    </div>
+
+    <div class="col-8 middleVertHoriz">
+      <div id="idProjectName" class="clsProjectName">
+        <!-- Battery Monitoring System -->
+        Battery Management System
+      </div>
+
+    </div>
+
+    <div class="col-2 pr-0" style="display: flex; align-self: center; justify-content: flex-end;">
+      <img style="    width: 35px; height: 25px; cursor: pointer;" (click)="onLogout()"
+        src="assets/images/png/Logout_orange.png">
+    </div>
+  </div>
+</div>
+<nav *ngIf="showHead" class="navbar navbar-expand-md navbar-dark  sticky-top"
+  style="background-color:yellowgreen !important; color: black; height: 25px;">
+  <!-- One of the primary actions on mobile is to call a business - This displays a phone button on mobile only -->
+  <div class="navbar-toggler-right">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+
+
+
+  <div class="collapse navbar-collapse flex-column " id="navbar">
+
+    <ul class="navbar-nav  w-100 justify-content-center px-3">
+      <li class="nav-item active">
+        <a class="nav-link" routerLinkActive="myActive  active" routerLink="/{{componentPathEnum.DashBoard}}">DashBoard
+          <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLinkActive="myActive  active"
+          routerLink="/{{componentPathEnum.RealTimeView}}">RealTimeView
+        </a>
+      </li>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Configuration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLinkActive="myActive  active"
+            routerLink="/{{componentPathEnum.SiteLocation}}">SiteLocation</a>
+
+          <a class="dropdown-item" routerLinkActive="myActive  active"
+            routerLink="/{{componentPathEnum.ManufacturerDetails}}">Manufacturer Details</a>
+
+        </div>
+      </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink0" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Reports
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink0">
+          <a class="dropdown-item" routerLinkActive="myActive  active"
+            routerLink="/{{componentPathEnum.ReportHistorical}}">Historical</a>
+          <a class="dropdown-item" routerLinkActive="myActive  active"
+            routerLink="/{{componentPathEnum.AlarmsReport}}">Alarm</a>
+          <a class="dropdown-item" routerLinkActive="myActive  active"
+            routerLink="/{{componentPathEnum.ReportDayWise}}">DayWise</a>
+          <a class="dropdown-item" routerLinkActive="  active"
+            routerLink="/{{componentPathEnum.ReportMonthly}}">Monthly</a>
+        </div>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="http://122.175.45.16/bcms/" target="_blank">Charger Status</a>
+      </li>
+
+
+    </ul>
+
+
+  </div>
+
+</nav>
+<!-------------------router outlet----------------------->
+<!-- Siddhartha -->
+<div class="container-fluid" style="min-height:calc(100% - 130px);">
+  <router-outlet></router-outlet>
+</div>
+<!------------------------------------------------------->
+
+<div id="idFooter" *ngIf="showHead">
+  <!------------------------Footer------------------------->
+  <app-footer2></app-footer2>
+  <!-------------------------------------------------------->
+</div>

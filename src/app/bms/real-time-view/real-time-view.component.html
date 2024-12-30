@@ -1,0 +1,127 @@
+
+
+
+<div *ngIf="false">
+  <button type="button" (click)="test()" class="btn btn-primary">Primary</button>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="row">
+  <div class="col-lg-5 d-flex align-items-center">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inputState">Site Name</label>
+        <select name="serialNumber" id="inputState" class="form-control" #siteId (change)="evntSiteIdSelectionChange(siteId.value)">
+          <option selected>Select Site Name</option>
+          <option *ngFor="let item of gblSiteIdListArray">{{
+            item.siteId || "--"
+          }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!----------------SerialNumber DropDown-------------->
+  <div class="col-lg-5 d-flex align-items-center">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inputState">Serial Number</label>
+        <select name="serialNumber" id="inputState" class="form-control" #serialNumber (change)="evntSerialNumberChange(serialNumber.value)" >
+          <option selected>Select Serial Number</option>
+          <option *ngFor="let item of gblSerialNumberListArray">{{
+            item.serialNumber || "--"
+          }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------------------->
+
+  <!---------------------GetData button-------------->
+  <div class="col-lg-2 col-2 align-self-center " style="display: flex; align-items: center; justify-content: center;"  >
+   <div style="display: block;">
+    <div>
+    <button  (click)="eventgetGeneralData()" class="btn btn-primary" style="padding: 0px 15px !important;">Get</button>
+    </div>
+    <div class="slider" style="display: flex; justify-content: center;" >
+      <mat-slide-toggle (change)="sliderOnChange($event)"></mat-slide-toggle>
+    </div>
+  </div>
+
+</div>
+  <!------------------------------------------------->
+    </div>
+  </div>
+
+  <div  *ngIf="gblDeviceDataWithSiteId!=null" class="col-lg-8">
+    <div class="row">
+   <!---------------------------packet Time------------------->
+   <div class="col-lg-2 col-4 middleVertHoriz p-0  px-1">
+    <!-----------------------PacketDateTime--------------->
+    <div id="idServerTime" style=" width: 100%;" matTooltip="Packet Date Time">
+      <!--------------------------- Time-------------------->
+      <div >
+        <div class="card shadow border border-primary">
+          <div class="card-header p-0 px-1"
+            style="font-size:0.8rem; padding: 0px 0px !important;display: flex;justify-content: center;">
+            Live Time
+          </div>
+          <div class="card-body " style="padding: 10px 0px;"  >
+            <div class="row align-content-center no-gutters">
+              <div class="col " style="display: flex; justify-content: center; line-height: 0px;">
+                <div class="text-dark font-weight-bold h5 mb-0" style=" font-size:0.7rem; line-height: 12px;">
+                  <span>{{ convertersService.convertOwlDatetimeToCustomDate(gblDeviceDataWithSiteId.packetDateTime) }}</span>
+                </div>
+            
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!---------------------------------------------------------->
+    </div>
+    <!----------------------------------------------------------------->
+  </div>
+  <!---------------------------------------------->
+
+
+  <!---------------------reserved-------------------------------->
+  <div *ngIf="true" class="col-lg-2 d-flex justify-content-center align-items-center" style="padding: 0px 5px !important;" >
+
+<div class="card p-0 shadow" style="width: 100%;">
+<div class="card-header p-0 px-1" style="font-size:0.7rem; padding: 3px 0px !important;display: flex;justify-content: center;" >
+  Customer Name
+</div>
+<div class="card-body p-0 px-1" style="font-size: 0.7rem; font-weight: bold;  padding: 9px 0px !important;display: flex;justify-content: center;" >
+  <span style="    
+  text-shadow: 2px 2px 4px #7f8673;
+  letter-spacing: 1.2px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2070a9;" >{{glbVendorName}}</span>
+  
+</div>
+</div>
+
+  </div>
+  <!-------------------------------------------------------------->
+
+  <!-------------Legends--------------------------->
+  <div class="col-lg-8 px-0" style="display: flex; align-items: center;">
+  <app-legends-representation2 style="width: 100%;"></app-legends-representation2>
+</div>
+  <!----------------------------------------------->
+    </div>
+  </div>
+
+</div>
+
+<!--********************************app-single-bms-data-view***************************-->
+<div *ngIf="gblDeviceDataWithSiteId!=null" >
+<app-single-bms-data-view    ></app-single-bms-data-view>
+</div>
+<!--***************************************************************-->
+
+
+

@@ -1,0 +1,108 @@
+<div class="row">
+    <!-------------------------------------------------------->
+<div class="col-lg-12 no-gutters">
+<div class="card rowBorder">
+    <div class="card-header p-0 px-1 d-flex justify-content-center cardHeaderColor">
+        Communication Status
+    </div>
+
+    <div class="card-body p-0 pl-1">
+   <!---------body---------->
+   
+<div class="row">
+    <div class="col-lg-3" style="    display: flex; padding: 0px 0px 0px 8px;
+    justify-content: start;
+    align-items: center;">
+      <div>
+        <table class="tblCommnStatus">
+          <th colspan="4" style="border-bottom: 0.5px gray solid;" >
+              <div style="display: flex; ">
+            <div>Total Installed</div>
+            <div>:</div>
+            <div>{{TotalInstalationcount(commnStatusArray)}}</div>
+          </div>
+          </th>
+          
+          <tr (click)="evntClckStatus(commnSiteIdcount(commnStatusArray))">
+            <th class="thColor" >
+              <span class="dot" style="background-color: #00e64d;"></span>
+            </th>
+            <th class="thParam">Communicating</th>
+            <th class="thColon"> :</th>
+            <th class="thValue">{{getArraryLength(commnSiteIdcount(commnStatusArray))}}</th>
+          </tr>
+  
+  
+          <tr (click)="evntClckStatus(NotCommnSiteIdcount(commnStatusArray))">
+              <th class="thColor" >
+                <span class="dot" style="background-color: #e93929;"></span>
+              </th>
+              <th class="thParam">Not Communicating</th>
+              <th class="thColon"> :</th>
+              <th class="thValue">{{getArraryLength(NotCommnSiteIdcount(commnStatusArray))}}</th>
+            </tr>
+  
+  
+        </table>
+  
+        
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div id="idCommnGraph" class="clsCommnGraph"></div>
+    </div>
+  </div>
+  
+   <!----------------------->
+    </div>
+
+</div>
+</div>
+<!-------------------------------------------------------->
+
+
+ 
+</div>
+
+
+
+
+<!--------------------------------- All  Selection----------------------------------------- -->
+<div class="modal" id="idSiteStatus" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header py-1">
+              <h2 class="modal-title">--</h2>
+              <button type="button"  mat-raised-button class="close" data-dismiss="modal" style="border: 3px solid coral; padding: 1px 1px; margin: 0px;" >&times;</button>
+          </div>
+  
+            <!-- Modal body -->
+            <div class="modal-body">
+             <!--************************************************-->
+             <div class="row">
+  
+              <div class="col-md-12">
+                <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+                  <div class="panel-heading"><b>  </b><div id="datetime" class="right"></div></div>
+              
+                  <div  class="panel-body" style="overflow-x: scroll;">
+                  <!----------Body--------------------->
+                   <app-string-param [receivedGeneralData]="genearalDataArray"></app-string-param>
+                  <!----------------------------------->
+                </div>
+              
+              </div>
+              </div>
+        
+            </div>
+  
+             <!--************************************************-->
+                
+            </div>
+        </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------->
+  

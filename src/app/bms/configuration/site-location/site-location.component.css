@@ -1,0 +1,83 @@
+.customeWidth
+{
+    max-width:100px ;
+    width: 100px;
+    min-width: 100px;
+}
+.customRow
+{
+  
+    display: flex; 
+    justify-content: center;
+    border-left: 0.2px solid gray;
+    border-right: 0.2px solid gray;
+   
+
+
+}
+
+.customHeader
+{   
+    display: flex; 
+   justify-content: center;
+    border-left: 0.2px solid gray;
+    border-right: 0.2px solid gray;
+
+}
+
+mat-row, mat-header-row, mat-footer-row
+{
+    height: 20px !important;
+    min-height:unset !important;
+    max-height:unset !important;
+}
+
+/********************************************************/
+
+
+.form-control
+{    border: 0.5px solid #ced4da;
+    border-radius: 1.25rem;
+}
+.form-row {
+    justify-content: space-between;
+}
+.form-group  label
+{
+display: flex;
+justify-content: left;
+margin-bottom: 0px ;
+font-size: small;
+font-weight: 700;
+}
+
+.form-group 
+{
+    margin-left:1.5rem;
+}
+
+.form-group input 
+{
+    width: 220px;
+    border-left: 5px #a51e7b solid;
+}
+
+.form-group select 
+{
+    width: 220px;
+    border-left: 5px #a51e7b solid;
+}
+
+.crudImage
+{
+    width: 30px;
+    height: 30px;
+}
+
+
+@media (min-width: 992px){
+    .modal-lg, .modal-xl {
+        /* max-width: 1382px; */
+        max-width: 44% !important;
+    }
+    }

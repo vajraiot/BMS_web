@@ -1,0 +1,19 @@
+/*********************mat table*************************************/
+:host::ng-deep mat-row, mat-footer-row {
+    min-height: 36px;
+}
+
+:host::ng-deep .mat-header-cell {
+    color: rgba(0,0,0,.54);
+    /*font-size: 0.81rem;*/
+    font-weight: bolder;
+}
+/**************************************************************/
+/***********tables css****************/
+.customHeaderWidthClass
+{
+min-width: 180px;
+width: 180px;
+}
+/***********************************/
+

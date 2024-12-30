@@ -1,0 +1,56 @@
+.cmpltLegend
+{
+display: inline-flex;
+
+}
+
+.legendBody
+{
+   background-color: white;
+
+    border: 0.8px gray solid;
+    border-radius: 0px 0px 0px 0px;
+    padding: 1px 1px;
+    overflow: hidden;
+    border-right: 5px grey solid;
+    border-radius: 0px 2px 2px 0px;
+
+    justify-content:space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.legendImg
+{
+display: flex;
+justify-content: center;
+
+}
+.singleLegend
+{
+    display: block;
+    /*width: 65px; */
+    
+    min-width: 11%;
+    width: 56px;
+    
+    background-color: black;
+    border-radius: 5px;
+    overflow: hidden;
+    margin:1px 2px;
+}
+.legendName
+{
+    font-size: 0.54rem;
+    font-weight: bold;
+    color: white;
+    line-height: 12px;
+    display: flex;
+    justify-content: center;
+}
+.imgSize
+{
+    width: 100%;
+    height: 37px;
+}

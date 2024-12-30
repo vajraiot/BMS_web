@@ -1,0 +1,610 @@
+<div class="row" style="display: flex; justify-content: start;">
+  <div class="col-lg-2">
+    <img style="width: 20px;" (click)="evntRefresh()" src="assets/images/png/refresh4040.png">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-2">
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <!------------------------Table-------->
+    <mat-table #table [dataSource]="plainManufacturerDetailsDataSource">
+
+      <ng-container matColumnDef="siteId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.siteId.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.siteId}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="serialNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.serialNumber.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.serialNumber}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstUsedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.firstUsedDate.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.firstUsedDate}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="batterySerialNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.batterySerialNumber.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.batterySerialNumber}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="batteryBankType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.batteryBankType.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.batteryBankType}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ahCapacity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.ahCapacity.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.ahCapacity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="manifactureName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.manifactureName.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.manifactureName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="individualCellVoltage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.individualCellVoltage.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.individualCellVoltage}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="designVoltage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth">
+          {{manufacturerFieldNamesService.designVoltage.frendlyName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth" style="padding-left: 10px;">
+          {{row.designVoltage}} </mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="set">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="customHeader customeWidth" style="padding: 0;">
+          <div (click)="evntAddNewLocationModel()">
+            <img style="width:20px" src="assets/images/png/add4040.png">
+          </div>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="customRow customeWidth"
+          style="padding: 0px; padding-left: 5px; padding-right: 5px;  background: white;        border: 0.6px gray solid;">
+          <div style="display: flex; justify-content: space-between; width: 100%;    ">
+            <div (click)="evntUpdateModel(row)">
+              <img style="width:20px" src="assets/images/png/edit4040.png">
+            </div>
+            <div (click)="evntDeleteRecord(row)">
+              <img style="width:20px" src="assets/images/png/delete4040.png">
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+
+
+
+      <mat-header-row *matHeaderRowDef="plainManufacturerDetailsDisplay; sticky: true;" style="    background: orange;
+          height: 1px;
+          min-height: 29px;
+          width: fit-content;
+          "></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: plainManufacturerDetailsDisplay;"
+        [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+        (click)="getRecord(row)" (dblclick)="evntUpdateModel(row)"></mat-row>
+    </mat-table>
+
+    <!------------------------------------->
+  </div>
+
+
+</div>
+
+
+
+<!----------------------------------Add New Location Model------------------------------>
+<div class="modal" id="idAddManufacturerDetails" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header py-1">
+        <h2 class="modal-title">--</h2>
+        <button type="button" mat-raised-button class="close" data-dismiss="modal"
+          style="border: 3px solid coral; padding: 1px 1px; margin: 0px;">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!--************************************************-->
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+              <div class="panel-heading"><b>Add New Manufacturer Details</b>
+                <div id="datetime" class="right"></div>
+              </div>
+
+              <div class="panel-body" style="padding-right: 5px;">
+
+
+                <!-------------------------------------Create---------------------------------------->
+                <form>
+                  <div class="form-row" style="display: flex; justify-content:flex-start;">
+                    <!----------------SiteId DropDown-------------->
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="inputState"> {{manufacturerFieldNamesService.siteId.frendlyName}}</label>
+                        <select name="serialNumber" id="inputState" class="form-control" #siteId
+                          (change)="evntSiteIdSelectionChange(siteId.value)">
+                          <option selected>Select Site Name</option>
+                          <option *ngFor="let item of gblSiteIdListArray">{{
+                            item.siteId || "--"
+                            }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------SerialNumber DropDown-------------->
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="inputState">{{manufacturerFieldNamesService.serialNumber.frendlyName}}</label>
+                        <select name="serialNumber" id="inputState" class="form-control" #serialNumber
+                          (change)="evntSerialNumberChange(serialNumber.value)">
+                          <option selected>Select Serial Number</option>
+                          <option *ngFor="let item of gblSerialNumberListArray">{{
+                            item.serialNumber || "--"
+                            }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------FistUsed Date---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label
+                          for="inputFistUsedDate">{{manufacturerFieldNamesService.firstUsedDate.frendlyName}}</label>
+                        <input type="text" name="firstUsedDate" [(ngModel)]="pmd.firstUsedDate" class="form-control"
+                          id="inputFistUsedDate" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------Battery Serial Number---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label
+                          for="inputBatterySerialNumber">{{manufacturerFieldNamesService.batterySerialNumber.frendlyName}}
+                        </label>
+                        <input type="text" name="batterySerialNumber" [(ngModel)]="pmd.batterySerialNumber"
+                          class="form-control" id="inputBatterySerialNumber" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+
+
+                    <!----------------------BatteryBankType---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="inputBatteryBankType">{{manufacturerFieldNamesService.batteryBankType.frendlyName}}
+                        </label>
+                        <input type="text" name="batteryBankType" [(ngModel)]="pmd.batteryBankType" class="form-control"
+                          id="inputBatteryBankType" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------ahCapacity---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="inputAhCapacity">{{manufacturerFieldNamesService.ahCapacity.frendlyName}} </label>
+                        <input type="text" name="ahCapacity" [(ngModel)]="pmd.ahCapacity" class="form-control"
+                          id="inputAhCapacity" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------manifactureName---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="inputManifactureName">{{manufacturerFieldNamesService.manifactureName.frendlyName}}
+                        </label>
+                        <input type="text" name="manifactureName" [(ngModel)]="pmd.manifactureName" class="form-control"
+                          id="inputManifactureName" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+
+                    <!----------------------individualCellVoltage---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label
+                          for="inputIndividualCellVoltage">{{manufacturerFieldNamesService.individualCellVoltage.frendlyName}}
+                        </label>
+                        <input type="text" name="individualCellVoltage" (ngModelChange)="valuechange($event)"
+                          [(ngModel)]="pmd.individualCellVoltage" class="form-control" id="inputIndividualCellVoltage"
+                          placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+
+                    <!----------------------designVoltage---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="inputdesignVoltage">{{manufacturerFieldNamesService.designVoltage.frendlyName}}
+                        </label>
+                        <input type="text" name="designVoltage" [(ngModel)]="pmd.designVoltage" class="form-control"
+                          id="inputdesignVoltage" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+                  </div>
+                  <div>
+                    <div class="panel-heading"><b>Add Threshold values</b>
+                      <div id="thr" class="right"></div>
+                    </div>
+                  </div>
+
+                  <!----------------------HighVoltage---------------------->
+                  <div class="form-row" style="display: flex; justify-content:flex-start;">
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="HighVoltage">High Voltage
+                        </label>
+                        <input type="text" name="HighVoltage" [(ngModel)]="pmd.cellThresholdValue.HighVoltage"
+                          class="form-control" id="HighVoltage" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+                    <!----------------------LowVoltage---------------------->
+
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="LowVoltage">LowVoltage
+                        </label>
+                        <input type="text" name="LowVoltage" [(ngModel)]="pmd.cellThresholdValue.LowVoltage"
+                          class="form-control" id="LowVoltage" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+                    <!----------------------BatteryAboutToDie---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="BatteryAboutToDie">Battery About To Die
+                        </label>
+                        <input type="text" name="BatteryAboutToDie"
+                          [(ngModel)]="pmd.cellThresholdValue.BatteryAboutToDie" class="form-control"
+                          id="BatteryAboutToDie" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------OpenBattery---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="OpenBattery">Open Battery
+                        </label>
+                        <input type="text" name="OpenBattery" [(ngModel)]="pmd.cellThresholdValue.OpenBattery"
+                          class="form-control" id="OpenBattery" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------HighTemperature---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="HighTemperature">High Temperature
+                        </label>
+                        <input type="text" name="HighTemperature" [(ngModel)]="pmd.cellThresholdValue.HighTemperature"
+                          class="form-control" id="HighTemperature" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------LowTemperature---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="LowVoltage">LowTemperature
+                        </label>
+                        <input type="text" name="LowTemperature" [(ngModel)]="pmd.cellThresholdValue.LowTemperature"
+                          class="form-control" id="LowTemperature" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------NotCommnVoltage---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="NotCommnVoltage">NotCommnVoltage
+                        </label>
+                        <input type="text" name="NotCommnVoltage" [(ngModel)]="pmd.cellThresholdValue.NotCommnVoltage"
+                          class="form-control" id="NotCommnVoltage" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------NotCommnTemperature---------------------->
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="NotCommnTemperature">NotCommnTemperature
+                        </label>
+                        <input type="text" name="NotCommnVoltage"
+                          [(ngModel)]="pmd.cellThresholdValue.NotCommnTemperature" class="form-control"
+                          id="NotCommnVoltage" placeholder="">
+                      </div>
+                    </div>
+                    <!--------------------------------------------------->
+                  </div>
+
+
+                </form>
+                <button (click)="eventAddNewManufacturerDetails()" class="btn btn-primary">Add</button>
+                <!----------------------------------------------------------------------------------->
+
+
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!--************************************************-->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+
+
+<!----------------------------------Add New Location Model------------------------------>
+<div class="modal" id="idUpdateManufacturerDetails" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header py-1">
+        <h2 class="modal-title">--</h2>
+        <button type="button" mat-raised-button class="close" data-dismiss="modal"
+          style="border: 3px solid coral; padding: 1px 1px; margin: 0px;">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!--************************************************-->
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+              <div class="panel-heading"><b>Update Manufacturer Details</b>
+                <div id="datetime" class="right"></div>
+              </div>
+
+              <div class="panel-body" style="padding-right: 5px;">
+
+
+                <!-------------------------------------Create---------------------------------------->
+                <form>
+                  <div class="form-row">
+
+                    <!----------------------FistUsed Date---------------------->
+                    <div class="form-group ">
+                      <label for="inputFistUsedDate">{{manufacturerFieldNamesService.firstUsedDate.frendlyName}}
+                      </label>
+                      <input type="text" name="firstUsedDate" [(ngModel)]="pmd.firstUsedDate" class="form-control"
+                        id="inputFistUsedDate" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------Battery Serial Number---------------------->
+                    <div class="form-group ">
+                      <label
+                        for="inputBatterySerialNumber">{{manufacturerFieldNamesService.batterySerialNumber.frendlyName}}
+                      </label>
+                      <input type="text" name="batterySerialNumber" [(ngModel)]="pmd.batterySerialNumber"
+                        class="form-control" id="inputBatterySerialNumber" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+
+
+                    <!----------------------BatteryBankType---------------------->
+                    <div class="form-group ">
+                      <label for="inputBatteryBankType">{{manufacturerFieldNamesService.batteryBankType.frendlyName}}
+                      </label>
+                      <input type="text" name="batteryBankType" [(ngModel)]="pmd.batteryBankType" class="form-control"
+                        id="inputBatteryBankType" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------ahCapacity---------------------->
+                    <div class="form-group ">
+                      <label for="inputAhCapacity">{{manufacturerFieldNamesService.ahCapacity.frendlyName}} </label>
+                      <input type="text" name="ahCapacity" [(ngModel)]="pmd.ahCapacity" class="form-control"
+                        id="inputAhCapacity" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+                    <!----------------------manifactureName---------------------->
+                    <div class="form-group ">
+                      <label
+                        for="inputManifactureName">{{manufacturerFieldNamesService.manifactureName.frendlyName}}</label>
+                      <input type="text" name="manifactureName" [(ngModel)]="pmd.manifactureName" class="form-control"
+                        id="inputManifactureName" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+
+                    <!----------------------individualCellVoltage---------------------->
+                    <div class="form-group ">
+                      <label
+                        for="inputIndividualCellVoltage">{{manufacturerFieldNamesService.individualCellVoltage.frendlyName}}</label>
+                      <input type="text" name="individualCellVoltage" (ngModelChange)="valuechange($event)"
+                        [(ngModel)]="pmd.individualCellVoltage" class="form-control" id="inputIndividualCellVoltage"
+                        placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+
+
+                    <!----------------------individualCellVoltage---------------------->
+                    <div class="form-group ">
+                      <label
+                        for="inputdesignVoltage">{{manufacturerFieldNamesService.designVoltage.frendlyName}}</label>
+                      <input type="text" name="designVoltage" [(ngModel)]="pmd.designVoltage" class="form-control"
+                        id="inputdesignVoltage" placeholder="">
+                    </div>
+                    <!--------------------------------------------------->
+                  </div>
+                  
+                    <div>
+                      <div class="panel-heading"><b>Update Threshold values</b>
+                        <div id="thr" class="right"></div>
+                      </div>
+                    </div>
+                  
+                  <div class="form-row">
+                    <!----------------------HighVoltage---------------------->
+                    <div class="form-row" style="display: flex; justify-content:flex-start;">
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="HighVoltage">High Voltage
+                          </label>
+                          <input type="text" name="HighVoltage" [(ngModel)]="pmd.cellThresholdValue.HighVoltage"
+                            class="form-control" id="HighVoltage" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+                      <!----------------------LowVoltage---------------------->
+
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="LowVoltage">LowVoltage
+                          </label>
+                          <input type="text" name="LowVoltage" [(ngModel)]="pmd.cellThresholdValue.LowVoltage"
+                            class="form-control" id="LowVoltage" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+                      <!----------------------BatteryAboutToDie---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="BatteryAboutToDie">Battery About To Die
+                          </label>
+                          <input type="text" name="BatteryAboutToDie"
+                            [(ngModel)]="pmd.cellThresholdValue.BatteryAboutToDie" class="form-control"
+                            id="BatteryAboutToDie" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+
+                      <!----------------------OpenBattery---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="OpenBattery">Open Battery
+                          </label>
+                          <input type="text" name="OpenBattery" [(ngModel)]="pmd.cellThresholdValue.OpenBattery"
+                            class="form-control" id="OpenBattery" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+
+                      <!----------------------HighTemperature---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="HighTemperature">High Temperature
+                          </label>
+                          <input type="text" name="HighTemperature" [(ngModel)]="pmd.cellThresholdValue.HighTemperature"
+                            class="form-control" id="HighTemperature" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+
+                      <!----------------------LowTemperature---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="LowVoltage">LowTemperature
+                          </label>
+                          <input type="text" name="LowTemperature" [(ngModel)]="pmd.cellThresholdValue.LowTemperature"
+                            class="form-control" id="LowTemperature" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+
+                      <!----------------------NotCommnVoltage---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="NotCommnVoltage">NotCommnVoltage
+                          </label>
+                          <input type="text" name="NotCommnVoltage" [(ngModel)]="pmd.cellThresholdValue.NotCommnVoltage"
+                            class="form-control" id="NotCommnVoltage" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+
+                      <!----------------------NotCommnTemperature---------------------->
+                      <div class="form-row">
+                        <div class="form-group ">
+                          <label for="NotCommnTemperature">NotCommnTemperature
+                          </label>
+                          <input type="text" name="NotCommnVoltage"
+                            [(ngModel)]="pmd.cellThresholdValue.NotCommnTemperature" class="form-control"
+                            id="NotCommnVoltage" placeholder="">
+                        </div>
+                      </div>
+                      <!--------------------------------------------------->
+                    </div>
+
+                  </div>
+                </form>
+                <button (click)="eventUpdateExistingManufacturerDetails()" class="btn btn-primary">Update</button>
+                <!----------------------------------------------------------------------------------->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!--************************************************-->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->

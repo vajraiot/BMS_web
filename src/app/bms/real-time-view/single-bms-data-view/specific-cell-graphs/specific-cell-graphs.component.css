@@ -1,0 +1,15 @@
+.highchartDimensions
+{
+    width: 1000px !important;
+    height: 300px !important;
+}
+
+.grph
+{
+    margin: 10px 5px !important;
+    border: 1px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 7px 5px grey;
+}
+

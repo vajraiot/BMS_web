@@ -1,0 +1,165 @@
+
+   <div class="card shadow p-0">
+    <div class="card-header card-header-data-view p-1 d-flex justify-content-between cardHeaderColor ">
+      <div>Manufacturer Details </div>
+    <!-- <img (click)="evntAllInstDataClick()" src="assets/images/png/graph3030.png" class="rounded graphImage" alt="...">  -->
+    
+  </div>
+      <div class="card-body card-body-data-view">
+        <!---------------------------------------------------------->
+        <table id="customers">
+           
+            <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >First  Used Date</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+                <div>{{pmd.firstUsedDate}}</div>
+                <div class="parameterSymbol"></div>
+              </div>
+
+            </td>
+          </tr>
+           <!------------------>
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Battery Serial Number</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+                <div>{{pmd.batterySerialNumber}}</div>
+                <div class="parameterSymbol"></div>
+              </div>
+            
+            </td>
+          </tr>
+           <!------------------>
+
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Type of Battery Bank</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+
+                <div>{{pmd.batteryBankType}}</div>
+                <div class="parameterSymbol"></div>
+              </div>
+              
+               
+            </td>
+          </tr>
+           <!------------------>
+
+
+
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Ah Capacity</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+
+                <div>{{pmd.ahCapacity}}</div>
+                <div class="parameterSymbol"></div>
+              </div>
+               
+            </td>
+          </tr>
+           <!------------------>
+
+
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Manifacture Name</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+
+                <div>{{pmd.manifactureName}}</div>
+                <div class="parameterSymbol"></div>
+              </div>
+               
+                
+              
+            </td>
+          </tr>
+           <!------------------>
+
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Design Voltage</div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+               
+                <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+                   <div>{{pmd.designVoltage}}</div>
+                   <div class="parameterSymbol">volts</div>
+                </div>
+                
+                
+           
+            </td>
+          </tr>
+           <!------------------>
+
+
+                       <!------------------>
+          <tr>
+            <td class="infoTableParameter" >
+            <div class="textDecoration" >Individual Cell Voltage </div> 
+            </td>
+            <td Class="infoTableColon">:</td>
+
+            <td Class="infoTableValue">
+             
+               <div   *ngIf="pmd!=null; else dataNotFound"  class="bmsValue" style="float: left;">
+                <div>{{pmd.individualCellVoltage}}</div>
+                <div class="parameterSymbol">Volts</div>
+               </div>               
+                
+            
+            </td>
+          </tr>
+           <!------------------>
+
+          </table>
+          <!---------------------------------------------------------->
+        </div>
+
+   </div>
+   <!---------------------------------------Data Not Found------------------>
+   <ng-template #dataNotFound>
+    --
+  </ng-template>
+  <!---------------------------------------------------------------------->

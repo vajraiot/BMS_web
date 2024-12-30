@@ -1,0 +1,215 @@
+
+<div class="row">
+
+  <div class="col-lg-3 px-0 pb-1">
+    <div class="card shadow p-0">
+      <div class="card-header card-header-data-view  p-1 cardHeaderColor">
+        Device Location
+      </div>
+      <div class="card-body  card-body-data-view">
+        <app-device-location ></app-device-location>
+      </div>
+    </div>
+  </div>
+
+
+  <!----------------Static site------------------->
+  <div class="col-lg-3 px-2 pb-2">
+    <app-static-cards></app-static-cards>
+  </div>
+<!------------------------------------------>
+
+
+  <div class="col-lg-6 px-0 pb-1"> 
+<div class="card p-0 shadow" >
+  <div class="card-header card-header-data-view p-0 px-1 cardHeaderColor">
+Alarms
+  </div>
+  <div class="card-body  card-body-data-view p-0 px-1">
+    
+    <div >
+      <app-device-alarm2 ></app-device-alarm2>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+</div>
+<!--**************************************************************-->
+
+<!--***********************2nd Row*******************************-->
+<div class="row">
+  <!----------------Instant data----------------->
+  <div class="col-lg-3 px-1 pb-2">
+    <app-instantaneous-data-view></app-instantaneous-data-view>
+
+    <!---Charge-cycle-->
+    <div class="col-lg-12 px-0 pb-2" style="margin-top: 22px;">
+    <app-charge-cycle-wise-data-view></app-charge-cycle-wise-data-view>
+    </div>
+    <!----------------->
+  </div>
+  <!--------------------------------------------->
+
+  <!-----------Cumulative data------------------>
+  <div class="col-lg-3 px-2 pb-2">
+   <app-cummulative-data-view></app-cummulative-data-view>
+
+ <!---Charge-cycle-->
+ <div class="col-lg-12 px-0 pb-2">
+ <app-discharge-cycle-wise-data-view></app-discharge-cycle-wise-data-view>
+</div>
+<!----------------->
+
+  </div>
+  <!--------------------------------------------->
+
+  <!-------------Cell Data------------------------>
+  <div class="col-lg-6">
+    <!--------------------------Cell Data---------------------------------------------------------->
+    <div *ngIf="true" class="row">
+      <div class="col-12 card shadow p-0">
+        <div class="card-header card-header-data-view p-1 cardHeaderColor" style="display: flex; justify-content: space-between;">
+          <div>Cells Data</div>
+          <div  style="margin-right: 10px;" matTooltip="Popup Cell Data">
+             <img  id="idPopupImage" class="clsPopupImage"   style="width: 25px; height: 25px;" src="assets/images/png/popupSkyblueTans100_99.png" (click)="evntToOpenModel()"(click)="evntToOpenModel()">
+           </div>
+
+        </div>
+        <div class="card-body  card-body-data-view p-0">
+          <mat-tab-group style="height: 335px;">
+    
+            <mat-tab label="Pictorial">
+              <ng-template matTabContent>
+                <div>
+                  <app-all-cells-pictorial-representaion   ></app-all-cells-pictorial-representaion>
+                </div>
+              </ng-template>
+            </mat-tab>
+    
+    
+            <mat-tab label="Graphical">
+              <ng-template matTabContent>
+                <div>
+                  <app-cell-graphs
+                    
+                    style="width: 100px !important; overflow: scroll;"
+                  ></app-cell-graphs>
+                </div>
+              </ng-template>
+            </mat-tab>
+    
+            
+            <mat-tab label="Tabular" style="overflow: scroll;">
+              <div>
+                <app-cell-table ></app-cell-table>
+              </div>
+            </mat-tab>
+       
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+      </div>
+  <!---------------------------------------------->
+
+</div>
+
+
+<!--*************************************************************-->
+
+
+
+
+<!---------------All models-------------------------------->
+<!--------------------------------- All InstData Selection----------------------------------------- -->
+<div class="modal" id="allInstDatapopupModel" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header py-1">
+            <h2 class="modal-title">--</h2>
+            <button type="button"  mat-raised-button class="close" data-dismiss="modal" style="border: 3px solid coral; padding: 1px 1px; margin: 0px;" >&times;</button>
+        </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+           <!--************************************************-->
+           <div class="row">
+
+            <div class="col-md-12">
+              <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+                <div class="panel-heading"><b>Graphs</b><div id="datetime" class="right"></div></div>
+            
+                <div  class="panel-body">
+
+               <!-------------------selector component---------------------------------------->                
+                  <app-instantaneous-data [receivingSiteId]="'VIOTTEST02'"></app-instantaneous-data>
+               <!------------------------------------------------------------------------------>
+
+              </div>
+            
+            </div>
+            </div>
+      
+          </div>
+
+           <!--************************************************-->
+              
+          </div>
+      </div>
+  </div>
+</div>
+<!---------------------------------------------------------------------->
+
+<!---------------------------------------------------------->
+
+
+
+<!--------------------------------- cell data model----------------------------------------- -->
+<div class="modal" id="idAllCellPictorialModel" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header py-1">
+        <h2 class="modal-title">Cells Data</h2>
+        <app-legends-representation2 style="width: 50%;"></app-legends-representation2>
+        <button type="button" mat-raised-button class="close" data-dismiss="modal"
+          style="border: 3px solid coral; padding: 1px 1px; margin: 0px;">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!--************************************************-->
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="panel panel-success shadow p-1 mb-0 bg-white" style="text-align: center;">
+              <div class="panel-heading"><b> </b>
+                <div id="datetime" class="right"></div>
+              </div>
+
+              <div class="panel-body" >
+                <!----------Body--------------------->
+               <app-all-cells-pictorial-representaion></app-all-cells-pictorial-representaion> 
+                <!----------------------------------->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!--************************************************-->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!---------------------------------------------------------------------->

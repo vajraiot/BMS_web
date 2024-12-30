@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+/* this is for date time picker . */
+@import "~ng-pick-datetime/assets/style/picker.min.css";  
+
+html, body { height: 100%; }
+
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } 
+/*@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/*@import '~@angular/material/prebuilt-themes/indigo-pink.css';*/
+
+/*@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/*@import "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i";
+
+/*@import url('https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js');*/
+/*https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i
+/*********this class added body when login page is opened***********/
+.bodybg-color {
+  /*  background-color:rgb(175, 199, 196); */
+  background: url("/assets/images/jpeg/backGroundImage.jpeg");
+  
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;;
+
+}
+
+.highlight{
+   /* background: #b4b9b4; /* green */
+     background: #b4b9b4; /* green */
+     width: fit-content;
+    }
+    mat-row, mat-header-row, mat-footer-row 
+    {
+       width: fit-content !important;
+    }
+
+:host ::ng-deep.mat-header-row
+   {
+background-color:blue !important;
+   }
+.mat-table 
+   {
+      width: fit-content !important;
+   }
+
+   .mat-header-cell {
+      color:black !important;
+      font-weight: bold !important;
+  }
+
+   .cardHeaderColor
+   {
+    /*  background-color: #94A32F !important;*/
+      /*background-color: #ff7f0e !important; */
+
+      background-color: #003265 !important;
+      color: white;
+   }
+.capitalize
+{
+ 
+}
+   .card-header
+   {
+    padding: 0px !important;
+   }
+
+
+   .middleVertHoriz
+   {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+ 
+
+   /*************************Text Data formate***********************/
+
+ table#customers
+   {
+      width: 100%;
+   }
+.infoTableParameter
+{
+	text-align: left;
+	font-size: 0.75rem;
+	width: 50%;
+	min-width: 120px;
+  text-transform: capitalize; 
+}
+.infoTableValue
+{
+font-weight: bold;
+text-align: left;
+
+}
+
+.bmsValue 
+{
+display: flex;
+}
+
+.infoTableColon
+{
+	padding-right: 4px;
+	font-weight: bold;
+}
+
+.textDecoration
+{
+	/*text-decoration: underline; */
+  -webkit-text-decoration-color: red; /* Safari */  
+  text-decoration-color: red;
+
+  font-weight: 400;
+  cursor: pointer;
+}
+.graphImage
+{
+    height: 20px;
+    width: 38px;
+    /* background-color: cadetblue; */
+    border: 0.2px red solid;
+ cursor: pointer;
+}
+
+/*******************Override Class**********************/
+.card-header-data-view 
+{
+  background-color: #bd762d ;
+  color: white;
+  padding-left: 5px !important;
+}
+.card-body-data-view {
+    padding: 0.25rem;
+}
+.headerColour
+{
+    background-color: #bd762d !important;
+    color: white;
+}
+.parameterSymbol
+{
+  margin-left: 3px !important;
+}
+   /******************************************************************/
+
+ /**************model **********************/
+@media (min-width: 992px){
+.modal-lg, .modal-xl {
+    /* max-width: 1382px; */
+    max-width: 85% !important;
+}
+}
+
+.modal
+{
+    z-index: 300 !important;
+}
+/****It should be less than the model class index  *********/
+.modal-backdrop
+{
+   z-index: 299 !important; 
+} 
+
+.mat-dialog-container 
+{
+    padding: 5px 10px !important;
+    height: auto !important;
+}
+ /*******************************************/  
+
+ /******************Calendar Input*********************/
+ 
+.calendarInput
+{
+    width: 100%;
+    border-left: 5px #473dd2 solid !important;
+    border: 0.5px solid #ced4da;
+    border-radius: 1.25rem;
+    padding: .375rem .75rem;
+    height: calc(1.5em + .75rem + 2px);
+}
+.calendarInput:focus
+{
+ border: #473dd2 !important;
+}
+/**********************************************************************/
+
+
+/**********************Form Group************************/
+
+.form-control
+{    border: 0.5px solid #ced4da;
+    border-radius: 1.25rem;
+}
+.form-row {
+    justify-content: space-between;
+}
+.form-group  label
+{
+display: flex;
+justify-content: left;
+margin-bottom: 0px ;
+font-size: small;
+font-weight: 700;
+}
+
+.form-group 
+{
+    margin-left:1.5rem;
+}
+
+.form-group input 
+{
+   /* width: 220px;*/
+ /*   border-left: 5px #a51e7b solid; */
+ border-left: 5px #473dd2 solid !important;
+}
+
+.form-group select 
+{
+   /* width: 220px;*/
+  /*  border-left: 5px #a51e7b solid; */
+  border-left: 5px #473dd2 solid !important;
+}
+/********************************************************/

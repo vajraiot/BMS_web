@@ -1,0 +1,96 @@
+<div class="card shadow p-0">
+    <div class="card-header card-header-data-view p-1 d-flex justify-content-between cardHeaderColor ">
+      <div> Instantaneous </div>
+    <!-- <img (click)="evntAllInstDataClick()" src="assets/images/png/graph3030.png" class="rounded graphImage" alt="...">  -->
+    
+  </div>
+    <div class="card-body  card-body-data-view">
+      <!---------------------------------------------------------->
+      <table id="customers">
+        <tr>
+          <td class="infoTableParameter" >
+          <div class="textDecoration" >String Voltage</div> 
+          </td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>{{gblBmsDeviceData?.stringvoltage  }} </div>
+              <div class="parameterSymbol">V</div>
+              
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">
+            <div class="textDecoration" >Current</div> 
+          
+          </td>
+          <td Class="infoTableColon">:</td>
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;" [ngClass]="(gblBmsDeviceData.bmsalarms.bankCycleDC==true)?'disChargeState':'chargeState' ">
+              <div >{{gblBmsDeviceData?.instantaneousCurrent  }} </div>
+              <div class="parameterSymbol">A</div>
+            </div>
+          </td>
+          <!--<td Class="infoTableValue"> <div  class="bmsValue" style="float: left;">{{liveMewaData.flowMeter2}} </div> <div style="float: left;     font-size: 8px;margin-top: 7px; padding-left: 1px;">LPM</div> </td>-->
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">State Of Charge(SOC)</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>{{
+               gblBmsDeviceData?.socLatestValueForEveryCycle 
+              }} </div>
+
+              <div class="parameterSymbol">%</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">Depth of Discharge(DOD)</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>{{
+               gblBmsDeviceData?.dodLatestValueForEveryCycle
+              }}
+            </div>
+            <div class="parameterSymbol">%</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="infoTableParameter">
+            <div class="textDecoration" >Ambient Temperature</div> 
+          
+          </td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue">
+            <div  class="bmsValue" style="float: left;">
+              <div>
+              {{gblBmsDeviceData?.ambientTemperature }}
+            </div>
+            <div class="parameterSymbol">°C</div>
+            </div>
+          </td>
+        </tr>
+
+        <!--<tr>
+          <td class="infoTableParameter">Battery Run Time</td>
+          <td Class="infoTableColon">:</td>
+
+          <td Class="infoTableValue"><div  class="bmsValue" style="float: left;">--</div></td>
+        </tr>  -->
+      </table>
+      <!---------------------------------------------------------->
+    </div>
+  </div>

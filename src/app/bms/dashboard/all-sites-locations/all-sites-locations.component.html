@@ -1,0 +1,74 @@
+<agm-map
+[zoom]="10" 
+[latitude]="getFocusLat(commnStatusArray)"
+[longitude]="getFocusLng(commnStatusArray)"
+[disableDefaultUI]="true"
+[zoomControl]="true"
+(mapClick)="close_window($event)"
+[fullscreenControl]="true"
+[streetViewControl]="true"
+[mapTypeControl]="true"    >
+    <div>
+      <div id="idagmMarkser" *ngFor="let commnStatus of commnStatusArray; " >
+
+        <!------------------------agm marker-------------------------------------------->
+        <div *ngIf="commnStatus!=null">
+        <agm-marker *ngIf="commnStatus.siteLocation!=null"
+          [latitude]="commnStatus.siteLocation.latitude"
+          [longitude]="commnStatus.siteLocation.longitude"
+          (markerClick)="select_marker(infoWindow)"
+          [iconUrl]="getMarker(commnStatus)" >
+          <!--/***********************info window*****************************/-->
+          <agm-info-window #infoWindow>
+            <div class="dvInfoWindow">
+              <table id="customers">
+                <th colspan="4">
+                  <div
+                    style="
+                      livemewadata: relative;
+                      text-align: center;
+                      background: burlywood;
+                    "
+                  >
+                    <span>{{commnStatus.siteLocation.locationName}}</span>
+                  </div>
+                </th>
+                
+                <!--<tr>
+                  <td class="infoTableParameter">Latitude</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{commnStatus.siteLocation.latitude}}</td>
+                </tr>
+
+
+                <tr>
+                  <td class="infoTableParameter">Longnitude</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{commnStatus.siteLocation.longitude }}</td>
+                </tr> -->
+
+                <tr>
+                  <td class="infoTableParameter">Customer Name</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{commnStatus?.siteLocation?.vendorName || '--'}}</td>
+                </tr>
+
+                
+                <tr>
+                  <td class="infoTableParameter">Battery AH Capacity</td>
+                  <td Class="infoTableColon">:</td>
+                  <td Class="infoTableValue">{{commnStatus?.siteLocation?.batteryAHCapacity|| '--'}}Ah </td>
+                </tr>
+
+              </table>
+            </div>
+          </agm-info-window>
+          <!--/****************************************************/-->
+        </agm-marker>
+        </div>
+<!---------------------------------------------------------------------->
+
+      </div>
+    </div>
+  
+</agm-map>

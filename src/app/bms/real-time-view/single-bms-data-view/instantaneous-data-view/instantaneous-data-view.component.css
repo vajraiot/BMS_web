@@ -1,0 +1,19 @@
+.chargeState{
+    color: green;
+    font-weight: bolder;
+}
+
+.chargeState::before 
+{
+    /*content: '+'; */
+}
+
+.disChargeState{
+    color: red;
+    font-weight: bolder;
+}
+
+.disChargeState::before 
+{
+    content: '-';
+}

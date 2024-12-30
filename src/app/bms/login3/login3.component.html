@@ -1,0 +1,73 @@
+<div class="row" style="display: flex;justify-content: center;">
+  <div class="col-lg-9" style="display: flex;justify-content: center;"> 
+    
+    <div id="idHeaderName">BATTERY MANAGEMENT SYSTEM</div>
+ 
+  </div>
+  </div>
+  
+  <div id="idCompleteLogin">
+  <div id="idLoginBoxFrame">
+    <div id="idVajraVlogo">  </div>
+  
+  <div class="login" >
+    
+      <h1 *ngIf="false"> LOGIN </h1>
+      <form>
+        
+          <mat-form-field style="width: 100%; color: white;">
+              <mat-label style="color: black;">Role</mat-label>
+              <mat-select
+                id="idMatSelection"
+                style="color: white;"
+                [(ngModel)]="roleSelected"
+                name="food"
+                tabindex="1"
+              >
+                <mat-option
+                  style="color: white; background-color: black;"
+                  *ngFor="let opt of lstStrLoginRoles"
+                  [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        
+        <input type="text"  [(ngModel)]="gblNgUserName" name="gblNgUserName"   placeholder="User name">
+        <input type="password" [(ngModel)]="gblNgPassword" name="gblNgPassword"  placeholder="Password">
+        <input type="submit" name="" value="Enter" (click)="OnLogin()" style="margin-bottom: 2px !important; margin-top: 10px;">
+  
+      </form>
+  
+      <div
+      *ngIf="showErrorResponse"
+      class="alert alert-danger"
+      role="alert"
+      style="
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        width: max-content;
+        background: white;
+        color: red;
+      "
+    >
+      <strong>*</strong> {{ errorResponse }}
+    </div>
+    
+    </div>
+    
+  </div>
+  
+  <div id="idPoweredBy" >
+  <div style="
+  font-size: 13px;
+  font-weight: 400;
+  font-family: cursive;
+  margin-right: 5px; 
+  color: white;">Powered By</div>
+   <a href="https://vajraiot.com/">VAJRA</a>
+  </div>
+  </div>
+  
+  

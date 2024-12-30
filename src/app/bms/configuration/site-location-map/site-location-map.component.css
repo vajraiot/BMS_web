@@ -1,0 +1,14 @@
+agm-map {
+    /* height: 462px;*/
+   /* height:483px;*/
+   min-width: 200px;
+   height:450px;
+     /* width: 1175%; */
+    /* width: 1069px;*/
+     }
+    
+  #idMapCard
+  {
+    min-height: 450px;
+    height: 450px;
+  }   

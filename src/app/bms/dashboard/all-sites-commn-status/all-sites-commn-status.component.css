@@ -1,0 +1,56 @@
+.clsCommnGraph
+{
+width: auto;
+height: 252px;
+/*border-radius: 10px;*/
+/*overflow: hidden !important;*/
+/*border: 1px gray solid;*/
+}
+.rowBorder
+{
+
+border-radius: 10px;
+overflow: hidden !important;
+border: 1px gray solid;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    /* background-color: #bbb; */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /************table Classses*******************/
+  .tblCommnStatus
+  {
+
+  }
+  .tblCommnStatus tr
+  {
+      padding-top: 2px;
+      padding-bottom: 2px;
+  }
+  .thColor
+  {
+      padding: 0px;
+  }
+  .thParam
+  {
+font-size: 0.70rem;
+  }
+  .thColon{
+
+  }
+.thValue
+{
+
+}
+
+table tr{
+  cursor: pointer;
+}
+/************************************/

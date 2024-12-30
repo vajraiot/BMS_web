@@ -1,0 +1,508 @@
+<div class="row" style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+  
+  <!--*****************************Fist Partition***************************************************-->
+  <div class="col-lg-10">
+    <div class="row">
+  <!----------------SiteId DropDown-------------->
+  <div class="col-lg-2 d-flex align-items-center">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inputState">Site Name</label>
+        <select name="serialNumber" id="inputState" class="form-control" #siteId
+          (change)="evntSiteIdSelectionChange(siteId.value)">
+          <option selected>Select Site Name</option>
+          <option *ngFor="let item of gblSiteIdListArray">{{
+            item.siteId || "--"
+          }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!----------------SerialNumber DropDown-------------->
+  <div class="col-lg-2 d-flex align-items-center">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inputState">Serial Number</label>
+        <select name="serialNumber" id="inputState" class="form-control" #serialNumber
+          (change)="evntSerialNumberChange(serialNumber.value)">
+          <option selected>Select Serial Number</option>
+          <option *ngFor="let item of gblSerialNumberListArray">{{
+            item.serialNumber || "--"
+          }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------------------->
+
+
+  <!----------------ParamType DropDown-------------->
+  <div class="col-lg-2 d-flex align-items-center">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inputState">Details Type</label>
+        <select name="paramType" id="idStirngOrCell" class="form-control" #paramTp
+          (change)="evntParamType(paramTp.value)">
+          <option selected>Select Details Type</option>
+          <option>{{paramType.stringParam}}</option>
+          <option>{{paramType.cellParam}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------------------------->
+
+<!----------------Start Date-------------->
+  <div class="col-md-2 col-6 middleVertHoriz">
+    <div class="inputs">
+        <input id="inptStartDate" [(ngModel)]="ngMdlStartDate" placeholder="Start Date" class="calendarInput"
+            [owlDateTimeTrigger]="startDateRef" [owlDateTime]="startDateRef">
+        <owl-date-time [pickerType]="'calendar'" #startDateRef></owl-date-time>
+    </div>
+</div>
+<!------------------------------------------------->
+
+
+<!----------------End Date-------------->
+<div class="col-md-2 col-6 middleVertHoriz">
+
+    <div class="inputs">
+        <input id="inptEndDate" type=“text” [(ngModel)]="ngMdlEndDate" placeholder="End Date" class="calendarInput"
+            [owlDateTimeTrigger]="endDateRef" [owlDateTime]="endDateRef">
+        <!-- <input id="inptEndDate"  type=“text”  [(ngModel)]="ngMdlEndDate"  >-->
+        <!--<owl-date-time [startAt]="EndAt" #dtt></owl-date-time>-->
+        <owl-date-time [pickerType]="'calendar'" #endDateRef></owl-date-time>
+    </div>
+</div>
+<!------------------------------------------------->
+
+<!--------------------------Get Button------------------------>
+   <div class="col-lg-1 col-1 align-self-center middleVertHoriz p-1">
+    <div matTooltip="Click To Get Data">
+        <button (click)="eventGetButton()" class="btn btn-primary" style="padding: 5px 15px !important;">
+            <img src="assets/images/png/pressButtonWithWhiteColor.png" style="width: 20px; height: 20px;">
+            Get</button>
+    </div>
+</div>
+<!---------------------------------------------------------->
+
+
+<!--------------------------Clear Button------------------------>
+<div class="col-lg-1 col-1 align-self-center  middleVertHoriz p-1">
+    <div matTooltip="Click To Clear Inputs">
+        <button (click)="clearButton()" class="btn btn-warning" style="padding: 5px 10px !important;">
+            <img src="assets/images/png/cleanTrans.png" style="width: 20px; height: 20px;">
+            Clear</button>
+    </div>
+</div>
+<!---------------------------------------------------------->
+
+
+  
+  <!---------------------Test button-------------->
+  <div *ngIf="false" class="col-lg-1 col-1 align-self-center " style="display: flex; align-items: center; justify-content: center;">
+    <button (click)="eventTestButton()" class="btn btn-primary">Test</button>
+  </div>
+  <!------------------------------------------------->
+    </div>
+  </div>
+  
+<!--*****************************Second Partition***************************************************-->
+    <div class="col-lg-2">
+      <div class="row"  style="display: flex; justify-content: flex-end; align-items: center; margin-top: 15px;">
+  <!---------------------Excell button----------------------->
+  <div class="col-lg-1 " style="display: flex; justify-content: flex-end; align-items: center;">
+
+    <img src="assets/images/png/ExcellTrans100_98.png" 
+    (click)="downLoadExcell()" 
+    style="width: 35px;height: 35px;" 
+    matTooltip="Click To Download Data."
+    >
+</div>
+<!-------------------------------------------->
+</div>
+  </div>
+  
+
+</div>
+
+<div class="row">
+  <div class="col-lg-12" style="overflow:auto;  height: 440px;;">
+    <!--------------------Mat table--------------------------------->
+    <div id="idStringTable" *ngIf="stringParamDataSource!=null" >
+
+      <mat-table #table [dataSource]="stringParamDataSource"
+        *ngIf="this.ngmSelectedParamsType==this.paramType.stringParam" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Identification Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="siteId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Site Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.siteId }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="serialNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Serial Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.serialNumber }} </mat-cell>
+        </ng-container>
+
+                  
+        <ng-container matColumnDef="packetDateTime">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">Packet Date Time
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.convertOwlDatetimeToCustomDate(row.packetDateTime) }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="deviceId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Device Identification
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.deviceId }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="bmsManufacturerID">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> BMS Manufacturer ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.bmsManufacturerID }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="installationDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Installation Date
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.installationDate }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="bMSAlarmsString">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> BMS Alarms String
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.bMSAlarmsString }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cellsConnectedCount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cells Count
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cellsConnectedCount }} </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="problemCells">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Problem Cells
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.problemCells }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="stringvoltage">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> String Voltage
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.stringvoltage }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="systemPeakCurrentInChargeOneCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            System Peak Current In Charge
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.systemPeakCurrentInChargeOneCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="averageDischargingCurrent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            Average Discharging Current
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.averageDischargingCurrent }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="averageChargingCurrent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            Average Charging Current
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.averageChargingCurrent }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="ahInForOneChargeCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ah In For Charge Cycle
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.ahInForOneChargeCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="ahOutForOneDischargeCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            Ah Out For Discharge Cycle
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.ahOutForOneDischargeCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cumulativeAHIn">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cumulative Ah In
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cumulativeAHIn }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cumulativeAHOut">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Cumulative Ah Out
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cumulativeAHOut }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="chargeTimeCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Charge Time Cycle
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{ convertersService.secondsTohhmmss(row.chargeTimeCycle) }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="dischargeTimeCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Discharge Time Cycle
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.secondsTohhmmss(row.dischargeTimeCycle) }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="totalChargingEnergy">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Total Charging Energy
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.totalChargingEnergy }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="totalDischargingEnergy">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            Total Discharging Energy
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.totalDischargingEnergy }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="everyHourAvgTemp">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Every Hour Average Temperature
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.everyHourAvgTemp }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cumulativeTotalAvgTempEveryHour">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            Cumulative Total Average Temperature
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.cumulativeTotalAvgTempEveryHour }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="socLatestValueForEveryCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            State Of Charge (SOC)
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.socLatestValueForEveryCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="dodLatestValueForEveryCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+           Depth Of Discharge (DOD)
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.dodLatestValueForEveryCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="systemPeakCurrentInDischargeOneCycle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">
+            System Peak Current In Discharge Cycle
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.systemPeakCurrentInDischargeOneCycle }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="instantaneousCurrent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Instantaneous Current
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.instantaneousCurrent }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ambientTemperature">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Ambient Temperature
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.ambientTemperature }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="batteryRunHours">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Battery Run Hours
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.secondsTohhmmss(row.batteryRunHours )}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="serverTime">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Server Time
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.convertOwlDatetimeToCustomDate(row.serverTime) }} </mat-cell>
+        </ng-container>
+
+        
+        <mat-header-row *matHeaderRowDef="stringParamdisplayedColumns; sticky: true;" style="    background: orange;
+    height: 1px;
+    min-height: 29px;
+    width: fit-content;
+    "></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: stringParamdisplayedColumns;" style="min-height: 30px;height: 30px;"
+          [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+          (click)="getRecord(row)"></mat-row>
+      </mat-table>
+
+      <!--------------Cell Data------------->
+      <mat-table #table [dataSource]="cellParamDataSource" *ngIf="this.ngmSelectedParamsType==this.paramType.cellParam"
+        class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Identification
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="siteId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Site Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{row.siteId }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="serialNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Serial Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{  row.serialNumber }} </mat-cell>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="packetDateTime">
+          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> Packet Date Time
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+            {{convertersService.convertOwlDatetimeToCustomDate(row.packetDateTime) }} </mat-cell>
+        </ng-container>
+
+        <!-----------cell iteration-------->
+        <div *ngFor="let indx of [].constructor(cellsCount);let i = index">
+
+          <ng-container matColumnDef="cell{{i+1}}">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'cellColoumn'"
+              style="border-left: 0.2px solid gray;">
+               Cell <div style="margin-left: 2px; font-weight: bolder; ">{{i+1}}</div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'cellColoumn'">
+              <div style="width: 100%;margin: 2px 2px; " matTooltip="SerialNumber :{{row.serialNumber}} Cell:{{i+1}}">
+                <table id="idCellTable">
+                  <tr>
+                    <th class="tableLeftRow">
+                      <div> <img style="width: 15px; height: 15px;" src="assets/images/png/temperature.png"> </div>
+                    </th>
+                    <th class="tableRighRow">
+                      <div> <img style="width: 15px; height: 15px;;" src="assets/images/png/voltage.png"> </div>
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td  style="color: black;"
+                      class="tableLeftRow">{{row.lstCellVoltageTemperatureData[i].cellTemperature}}</td>
+                    <td style="color: black;"
+                      class="tableRighRow">{{row.lstCellVoltageTemperatureData[i].cellVoltage}}</td>
+
+                  </tr>
+                </table>
+              </div>
+
+            </mat-cell>
+          </ng-container>
+
+        </div>
+        <!------------------------------------>
+
+
+
+        <mat-header-row *matHeaderRowDef="cellParamdisplayedColumns ; sticky: true;" style="
+     background: orange;
+    height: 1px;
+    min-height: 29px;
+    width: fit-content;"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: cellParamdisplayedColumns ;"
+          [ngClass]="{'highlight': selectedRowIndex == row.id,'select-row': row.selected}" #matrowclicking
+          (click)="getRecord(row)"></mat-row>
+      </mat-table>
+
+
+      <!--------------------------------------->
+    </div>
+    <!-------------------------------------------------------------->
+  </div>
+
+</div>
+
+<div class="row" >
+  <div class=col-md-2></div>
+  <div class="col-md-7">
+    <div class="example-container mat-elevation-z8 ">
+      <mat-paginator #paginator [length]="TotalPages" [pageSizeOptions]="[1,3,5,10,20, 25,50, 100,250]"
+        class="matPaginatorContainer" [pageSize]="PageSize" (page)="handlePage($event)" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </div>
+</div>

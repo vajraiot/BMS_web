@@ -1,0 +1,119 @@
+.SingleCell {
+  display: inline-flex;
+  border-radius: 20px !important;
+
+  margin-left: 5px;
+
+  border: 0.5px #c39b9b solid;
+  overflow: hidden;
+ /* width: 100%; */
+  width: 90px; 
+}
+
+.cellPic {
+    
+    ALIGN-ITEMS: CENTER;
+    background: white;
+    display: flex;
+    overflow: hidden;
+    border-right: 0.5px #00000085 solid;
+    justify-content: space-around;
+}
+.cellCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  /*border-radius: .25rem; */
+  border-radius: 0px 20px 20px 0px !important;
+
+  overflow: hidden;
+
+  font-weight: bold;
+  color: black;
+  font-size: 0.8rem;
+width: 100%;
+}
+
+.cellheader {
+  /*margin-bottom: 0;*/
+  /*background-color: rgba(0,0,0,.03); */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background:#bec553;
+}
+
+.cellCardBody {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+
+.VoltageTempNames
+{
+    font-size: 0.65rem;
+}
+
+
+.VoltageTempValues
+{
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/************************New*****************/
+.completeCell
+{
+  display: block;
+    width: 61px;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px 2px white;
+   /* border: 0.1px solid white;*/
+   cursor: pointer;
+}
+.margin
+{
+  border: 1px solid;
+  margin: 0px 5px;
+  
+}
+.information
+{
+  line-height: 13px;
+}
+.cellNumber
+{
+  font-size: 12px;
+  justify-content: center;
+  display: flex;
+  
+  border-radius: 25px;
+}
+.symbl
+{}
+.vlu
+{
+  margin-left: 8px;
+  font-size: 12px;
+}
+#idVolt ,#idTemp
+{
+ display: flex;
+ justify-content: flex-start;
+ padding-left: 2px;
+ color: white;
+
+}
+
+
+.modal
+{
+    z-index: 500 !important;
+}
+/****It should be less than the model class index  *********/
+.modal-backdrop
+{
+   z-index: 499 !important; 
+} 

@@ -1,0 +1,202 @@
+<div class="row" style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+
+    <!--*****************************Fist Partition***************************************************-->
+    <div class="col-lg-10">
+      <div class="row">
+        <!----------------SiteId DropDown-------------->
+        <div class="col-lg-2 d-flex align-items-center">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputState">Site Name</label>
+              <select name="serialNumber" id="inputState" class="form-control" #siteId
+                (change)="evntSiteIdSelectionChange(siteId.value)">
+                <option selected>Select Site Name</option>
+                <option *ngFor="let item of gblSiteIdListArray">{{
+                item.siteId || "--"
+              }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!----------------SerialNumber DropDown-------------->
+        <div class="col-lg-2 d-flex align-items-center">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputState">Serial Number</label>
+              <select name="serialNumber" id="inputState" class="form-control" #serialNumber
+                (change)="evntSerialNumberChange(serialNumber.value)">
+                <option selected>Select Serial Number</option>
+                <option *ngFor="let item of gblSerialNumberListArray">{{
+                item.serialNumber || "--"
+              }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--------------------------------------------------->
+  
+  
+  
+  
+        <!----------------Start Date-------------->
+        <div class="col-md-2 col-6 middleVertHoriz">
+         
+          <div class="inputs">
+            <input  id="inptStartDate" [(ngModel)]="ngMdlStartDate" placeholder="Start Date" class="calendarInput"
+              [owlDateTimeTrigger]="startDateRef" [owlDateTime]="startDateRef">
+            <owl-date-time [pickerType]="'calendar'" #startDateRef></owl-date-time>
+          </div>
+           
+     
+       </div>
+        <!------------------------------------------------->
+  
+  
+        <!----------------End Date-------------->
+        <div class="col-md-2 col-6 middleVertHoriz">
+            
+          <div class="inputs">
+            <input id="inptEndDate" type=“text” [(ngModel)]="ngMdlEndDate" placeholder="End Date"  class="calendarInput"
+              [owlDateTimeTrigger]="endDateRef" [owlDateTime]="endDateRef">
+            <!-- <input id="inptEndDate"  type=“text”  [(ngModel)]="ngMdlEndDate"  >-->
+            <!--<owl-date-time [startAt]="EndAt" #dtt></owl-date-time>-->
+            <owl-date-time [pickerType]="'calendar'" #endDateRef></owl-date-time>
+          </div>
+    
+    </div>
+        <!------------------------------------------------->
+  
+     <!--------------------------Get Button------------------------>
+      <div class="col-lg-1 col-1 align-self-center middleVertHoriz p-1">
+        <div matTooltip="Click To Get Data">
+            <button (click)="eventGetButton()" class="btn btn-primary" style="padding: 5px 15px !important;">
+                <img src="assets/images/png/pressButtonWithWhiteColor.png" style="width: 20px; height: 20px;">
+                Get</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------->
+  
+  
+    <!--------------------------Clear Button------------------------>
+    <div class="col-lg-1 col-1 align-self-center  middleVertHoriz p-1">
+        <div matTooltip="Click To Clear Inputs">
+            <button (click)="clearButton()" class="btn btn-warning" style="padding: 5px 10px !important;">
+                <img src="assets/images/png/cleanTrans.png" style="width: 20px; height: 20px;">
+                Clear</button>
+        </div>
+    </div>
+    <!---------------------------------------------------------->
+  
+  
+        <!---------------------Test button-------------->
+        <div *ngIf="false" class="col-lg-1 col-1 align-self-center "
+          style="display: flex; align-items: center; justify-content: center;">
+          <button (click)="eventTestButton()" class="btn btn-primary">Test</button>
+        </div>
+        <!------------------------------------------------->
+      </div>
+    </div>
+  
+  
+    <!--*****************************Second Partition***************************************************-->
+    <div class="col-lg-2">
+      <div class="row" style="display: flex; justify-content: flex-end; align-items: center; margin-top: 15px;">
+        <!---------------------Excell button----------------------->
+        <div *ngIf="true" class="col-lg-1 " style="display: flex; justify-content: flex-end; align-items: center;">
+  
+          <img src="assets/images/png/ExcellTrans100_98.png" (click)="downLoadExcell()" style="width: 35px;height: 35px;"
+            matTooltip="Click To Download Data.">
+        </div>
+        <!-------------------------------------------->
+      </div>
+    </div>
+  
+  
+  
+  </div>
+
+
+
+  <!----************************************************2nd Row****************************************-->
+<div class="row" *ngIf="dayWiseDataSource!=null">
+    <div class="col-lg-12" style="display: flex;justify-content: center;">
+      <!--------------------Mat table--------------------------------->
+      <div id="idStringTable" *ngIf="true" style="overflow:auto;  height: 440px;;">
+  
+        <mat-table #table [dataSource]="dayWiseDataSource" class="mat-elevation-z8">
+   
+                 
+          <ng-container matColumnDef="dayWiseDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'">Day
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{convertersService.convertOwlDatetimeToOnlyDate(row.dayWiseDate) }} </mat-cell>
+          </ng-container>
+
+                   
+         <ng-container matColumnDef="chargeOrDischargeCycle">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> {{fieldNamesMapperService.chargeOrDischargeCycle.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{row.chargeOrDischargeCycle }} </mat-cell>
+          </ng-container>
+
+          
+          <ng-container matColumnDef="cumulativeAHOut">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> {{fieldNamesMapperService.cumulativeAHOut.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{row.cumulativeAHOut }} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="totalChargingEnergy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> {{fieldNamesMapperService.totalChargingEnergy.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{row.totalChargingEnergy }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="totalDischargingEnergy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> 
+              {{fieldNamesMapperService.totalDischargingEnergy.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{row.totalDischargingEnergy }} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="batteryRunHours">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> {{fieldNamesMapperService.batteryRunHours.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{ convertersService.secondsTohhmmss(row.batteryRunHours) }} </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="cumulativeAHIn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customHeaderWidthClass'"> {{fieldNamesMapperService.cumulativeAHIn.frendlyName}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="'customHeaderWidthClass'" style="padding-left: 10px;">
+              {{row.cumulativeAHIn }} </mat-cell>
+          </ng-container>
+     
+  
+  
+  
+          <mat-header-row *matHeaderRowDef="dayWiseDataisplayedColumns; sticky: true;" style="    background: orange;
+            height: 1px;
+            min-height: 29px;
+            width: fit-content;
+            "></mat-header-row>
+  
+          <mat-row *matRowDef="let row; columns: dayWiseDataisplayedColumns;" style="min-height: 30px;height: 30px;"
+            [ngClass]="{'highlight': selectedRowIndex == row.dayWiseDate,'select-row': row.selected}" #matrowclicking
+            (click)="getRecord(row)"></mat-row>
+        </mat-table>
+  
+        <!--------------------------------------->
+      </div>
+      <!-------------------------------------------------------------->
+    </div>
+  
+  </div>
